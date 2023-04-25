@@ -1,5 +1,5 @@
 function decimalToBinary(decimalNum) {
-    resultDtB = {
+    let resultDtB = {
         binary: [],
         explanation: [],
     }
@@ -17,14 +17,18 @@ function decimalToBinary(decimalNum) {
             resultDtB.binary.unshift(temp2)
             remainDecimal = temp1
         }
+
+        while (resultDtB.binary.length % 4 !== 0) {
+            resultDtB.binary.unshift(0)
+        }
     }
 
 
     return resultDtB
 }
 
-// export default decimalToBinary
-let cobs = decimalToBinary(10)
-console.log(cobs.binary.join(""));
-console.log(cobs.explanation.join("\n"));
+module.exports = decimalToBinary
+// let cobs = decimalToBinary(10)
+// console.log(cobs.binary.join(""));
+// console.log(cobs.explanation.join("\n"));
 
