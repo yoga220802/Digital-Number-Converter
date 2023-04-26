@@ -1,3 +1,4 @@
+import { binaryFormatter } from "../../utils/binaryFormat";
 import { ConverterResult } from "../../utils/customDataTypes";
 
 export function decimalToBinary(decimalNum: number) {
@@ -22,14 +23,15 @@ export function decimalToBinary(decimalNum: number) {
       remainDecimal = temp1;
     }
 
-    while (resultDtB.converted.length % 4 !== 0) {
-      resultDtB.converted.unshift("0");
-    }
+    binaryFormatter().addZero(4, resultDtB.converted)
+    // while (resultDtB.converted.length % 4 !== 0) {
+    //   resultDtB.converted.unshift("0");
+    // }
   }
 
   return resultDtB;
 }
 
-// let cobs = decimalToBinary(4);
-// console.log(cobs.converted.join(""));
-// console.log(cobs.explanation.join("\n"));
+let cobs = decimalToBinary(4);
+console.log(cobs.converted.join(""));
+console.log(cobs.explanation.join("\n"));
