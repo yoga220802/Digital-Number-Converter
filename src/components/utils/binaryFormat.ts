@@ -5,15 +5,14 @@ export const binaryFormatter = () => {
     }
   };
 
-  const binarySplit = (sumOfElement: number = 1, obj: string = "1") => {
+  const binarySplit = (sumOfElement: number, obj: string) => {
     const str: string = obj;
-    let pattern;
-    sumOfElement === 3 ? pattern = /.{1,3}/g : pattern = /.{1,4}/g
-const result = str.match(pattern)?.map((sub) => [sub]);
-  
-    console.log(result); // [["110"], ["001"]]
+    let pattern: any;
+    sumOfElement === 3 ? (pattern = /.{1,3}/g) : (pattern = /.{1,4}/g);
+    const result = str.match(pattern)?.map((sub) => [sub]);
+    return result;
+    // console.log(result); // [["110"], ["001"]]
   };
-  
 
   return { addZero, binarySplit };
 };

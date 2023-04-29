@@ -29,7 +29,7 @@ export function binaryToDecimal(binary: string) {
 // console.log(coba1.converted.join(""))
 // console.log(coba1.explanation.join("+\n"))
 
-let coba2 = binaryToDecimal("1010")
-// console.log(coba2)
-console.log(coba2.converted.join(""))
-console.log(coba2.explanation.join("+\n"))
+// let coba2 = binaryToDecimal("1010")
+// // console.log(coba2)
+// console.log(coba2.converted.join(""))
+// console.log(coba2.explanation.join("+\n"))
