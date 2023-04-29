@@ -38,7 +38,7 @@ export function binaryToOctal(binary: string) {
     resultBtO.converted.push(temp.converted.join(""));
   }
   resultBtO.explanation.push(
-    `Gabungkan semua hasil konversi ke kedesimal tadi: ${resultBtO.converted.join(
+    `Gabungkan semua hasil konversi ke desimal tadi: ${resultBtO.converted.join(
       ""
     )}`
   );
@@ -48,3 +48,4 @@ export function binaryToOctal(binary: string) {
 
 // let coba = binaryToOctal("10100110001");
 // console.log(coba.explanation.join("\n\n"));
+// console.log(coba.converted.join(""));
