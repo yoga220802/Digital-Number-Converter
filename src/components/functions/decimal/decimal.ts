@@ -3,10 +3,10 @@ import { decimalToBinary } from "./toBinary";
 import { decimalToHexa } from "./toHexa";
 import { decimalToOctal } from "./toOctal";
 
-class Decimal {
-    private num: number
+export class Decimal {
+    private num: string
     private result: Result
-    constructor(number: number) {
+    constructor(number: string) {
         this.num = number;
         this.result = {
             converted: "",

@@ -1,11 +1,11 @@
 import { ConverterResult } from "../../utils/customDataTypes";
 
-export function decimalToOctal(decimalNum: number) {
+export function decimalToOctal(decimalNum: string) {
   let resultDtO: ConverterResult = {
     converted: [],
     explanation: [],
   };
-  let remainDecimal: number = decimalNum;
+  let remainDecimal: number = parseInt(decimalNum)
 
   if (remainDecimal <= 7) {
     resultDtO.explanation.push("Desimal 0 sampai 7 tidak perlu dikonversi");
@@ -26,6 +26,6 @@ export function decimalToOctal(decimalNum: number) {
   return resultDtO;
 }
 
-// let cobs = decimalToOctal(5);
+// let cobs = decimalToOctal("15");
 // console.log(cobs.converted.join(""));
 // console.log(cobs.explanation.join("\n"));
