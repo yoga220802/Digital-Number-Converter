@@ -3,7 +3,7 @@ import { binaryToDecimal } from "./toDecimal";
 import { binaryToHexa } from "./toHexa";
 import { binaryToOctal } from "./toOctal";
 
-class Binary {
+export class Binary {
   private _binary: string;
   private result: Result;
 

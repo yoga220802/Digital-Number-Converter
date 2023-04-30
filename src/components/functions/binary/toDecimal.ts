@@ -6,7 +6,7 @@ export function binaryToDecimal(binary: string) {
         explanation: []
     }
 
-    let binaryDigits: any = binary.split("").map(Number)
+    let binaryDigits: number[] = binary.split("").map(Number)
     // console.log(binaryDigits);
     // console.log(binaryDigits.length);
     let counter = 0
@@ -24,10 +24,10 @@ export function binaryToDecimal(binary: string) {
     return resultBtD
 }
 
-// let coba1 = binaryToDecimal("11")
-// console.log(coba1)
-// console.log(coba1.converted.join(""))
-// console.log(coba1.explanation.join("+\n"))
+let coba1 = binaryToDecimal("11")
+console.log(coba1)
+console.log(coba1.converted.join(""))
+console.log(coba1.explanation.join("+\n"))
 
 // let coba2 = binaryToDecimal("1010")
 // // console.log(coba2)
