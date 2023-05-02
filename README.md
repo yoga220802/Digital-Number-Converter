@@ -1,3 +1,3 @@
 # Digital Number Converter 
-## React Native Typescript
+## React Native
 
