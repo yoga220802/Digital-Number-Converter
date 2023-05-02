@@ -1,12 +1,12 @@
 import { hexaFormater } from "../../utils/hexaFormat";
 import { ConverterResult } from "../../utils/customDataTypes";
 
-export function decimalToHexa(decimalNum: number): ConverterResult {
+export function decimalToHexa(decimalNum: string): ConverterResult {
   let resultDtH: ConverterResult = {
     converted: [],
     explanation: [],
   };
-  let remainDecimal: number = decimalNum;
+  let remainDecimal: number = parseInt(decimalNum)
 
   if (remainDecimal <= 15) {
     resultDtH.explanation.push("Desimal 0 sampai 15 tidak perlu dikonversi");
@@ -30,6 +30,6 @@ export function decimalToHexa(decimalNum: number): ConverterResult {
   return resultDtH;
 }
 
-// let cobs = decimalToHexa(15);
+// let cobs = decimalToHexa("125");
 // console.log(cobs.converted.join(""));
 // console.log(cobs.explanation.join("\n"));
