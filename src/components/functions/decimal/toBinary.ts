@@ -23,10 +23,6 @@ export function decimalToBinary(decimalNum: string) {
       remainDecimal = temp1;
     }
 
-    // if (addZero) {
-    //   binaryFormatter().addZero(4, resultDtB.converted)
-    //   resultDtB.explanation.push("Agar tampilannya lebih in")
-    // }
     resultDtB.explanation.push(`Didapat hasil: ${resultDtB.converted.join("")}`)
     // while (resultDtB.converted.length % 4 !== 0) {
     //   resultDtB.converted.unshift("0");
