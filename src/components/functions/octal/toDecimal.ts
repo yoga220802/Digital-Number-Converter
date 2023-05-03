@@ -31,6 +31,6 @@ export const octalToDesimal = (octalNum: string) => {
   return resultOtD;
 };
 
-let coba = octalToDesimal("102");
-console.log(coba.explanation.join("\n"));
-console.log(coba.converted);
+// let coba = octalToDesimal("102");
+// console.log(coba.explanation.join("\n"));
+// console.log(coba.converted);
