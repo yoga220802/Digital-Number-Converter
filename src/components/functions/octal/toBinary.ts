@@ -28,6 +28,6 @@ export const octalToBinary = (octalNum: string) => {
   return resultOtB;
 };
 
-let coba = octalToBinary("24");
-console.log(coba.explanation.join("\n\n"));
-console.log(coba.converted.join(""));
+// let coba = octalToBinary("24");
+// console.log(coba.explanation.join("\n\n"));
+// console.log(coba.converted.join(""));
