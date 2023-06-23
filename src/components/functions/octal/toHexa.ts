@@ -24,8 +24,8 @@ export const octalToHexa = (octalNum: string) => {
 
   // for (let i = 0; i < temp.length; i++) {
     let toHexa = binaryToHexa(temp.join(""))
-    console.log(toHexa.explanation);
-    console.log(toHexa.converted);
+    // console.log(toHexa.explanation);
+    // console.log(toHexa.converted);
   // }
 
   
@@ -35,7 +35,7 @@ export const octalToHexa = (octalNum: string) => {
   return resultOtH;
 };
 
-let coba = octalToHexa("12")
+// let coba = octalToHexa("12")
 // console.log(coba);
 
 
