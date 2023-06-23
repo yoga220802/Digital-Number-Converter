@@ -6,51 +6,39 @@ export const hexaFormater = (): HexaFormat => {
     switch (char) {
       case "10":
         return "A";
-        break;
       case "11":
         return "B";
-        break;
       case "12":
         return "C";
-        break;
       case "13":
         return "D";
-        break;
       case "14":
         return "E";
-        break;
       case "15":
         return "F";
       default:
         return char.toString();
-        break;
     }
   };
   
-  const toecimal = (char: string): string => {
+  const toDecimal = (char: string): string => {
       switch (char) {
-        case "10":
-          return "A";
-          break;
-        case "11":
-          return "B";
-          break;
-        case "12":
-          return "C";
-          break;
-        case "13":
-          return "D";
-          break;
-        case "14":
-          return "E";
-          break;
-        case "15":
-          return "F";
+        case "A":
+          return "10";
+        case "B":
+          return "11";
+        case "C":
+          return "12";
+        case "D":
+          return "13";
+        case "E":
+          return "14";
+        case "F":
+          return "15";
         default:
           return char.toString();
-          break;
       }
 }
 
-  return { toHexa, toecimal };
+  return { toHexa, toDecimal };
 };
