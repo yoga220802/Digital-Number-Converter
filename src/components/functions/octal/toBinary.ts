@@ -29,5 +29,7 @@ export const octalToBinary = (octalNum: string) => {
 };
 
 // let coba = octalToBinary("24");
+// console.log(coba);
+
 // console.log(coba.explanation.join("\n\n"));
 // console.log(coba.converted.join(""));

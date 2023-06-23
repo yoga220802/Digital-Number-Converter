@@ -12,6 +12,7 @@ export const octalToHexa = (octalNum: string) => {
 
   let octalDigits: string = octalNum;
   let toBinary = octalToBinary(octalDigits)
+  resultOtH.explanation.push(toBinary.explanation.join("\n"))
   octalDigits = toBinary.converted.join("")
 
   let temp: any = octalDigits.split("")
@@ -24,8 +25,11 @@ export const octalToHexa = (octalNum: string) => {
 
   // for (let i = 0; i < temp.length; i++) {
     let toHexa = binaryToHexa(temp.join(""))
-    // console.log(toHexa.explanation);
-    // console.log(toHexa.converted);
+    resultOtH.explanation.push(toHexa.explanation.join("\n"))
+    resultOtH.converted = toHexa.converted
+    resultOtH.converted.shift()
+    resultOtH.explanation.pop()
+    resultOtH.explanation.push(`Ubah ke format heksadesimal: ${resultOtH.converted.join("")}`)
   // }
 
   
@@ -35,7 +39,8 @@ export const octalToHexa = (octalNum: string) => {
   return resultOtH;
 };
 
-// let coba = octalToHexa("12")
+// let coba = octalToHexa("252")
 // console.log(coba);
+// console.log(coba.converted.join(""));
 
 
