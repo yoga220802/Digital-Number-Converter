@@ -37,5 +37,5 @@ export class Octal {
     }
 }
 
-let coba = new Octal("12")
-console.log(coba.toHexa());
+// let coba = new Octal("12")
+// console.log(coba.toHexa());
