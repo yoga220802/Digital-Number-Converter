@@ -5,7 +5,7 @@ interface ConverterResult {
 
 type HexaFormat = {
     toHexa: (char: string) => string
-    toecimal: (char: string) => string
+    toDecimal: (char: string) => string
 }
 
 interface Result {
