@@ -1,4 +1,4 @@
-import { ConverterResult, Result } from "../../utils/customDataTypes";
+import { ConverterResult } from "../../utils/customDataTypes";
 import { hexaFormater } from "../../utils/hexaFormat";
 import { binaryFormatter } from "../../utils/binaryFormat";
 import { Decimal } from "../decimal/decimal";
