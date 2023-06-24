@@ -8,13 +8,13 @@ export function hexaToBinary(hexaNum: string) {
     converted: [],
     explanation: [],
   };
-
-  resultHtB.explanation.push(
-    `Pisahkan setiap digit bilangan hexadesimal\n${hexaNum} => `
-  );
-  let toDecimal: string[] = [];
+  let toDecimalFormat: string[] = [];
   let hexNum: string[] = hexaNum.split("");
-  resultHtB.explanation[0] += `${hexNum.join(" ")}`;
+  resultHtB.explanation.push(
+    `Pisahkan setiap digit bilangan hexadesimal\n${hexaNum} => ${hexNum.join(
+      " "
+    )}`
+  );
 
   resultHtB.explanation.push(
     `Ubah format penulisan setiap digit menjadi format desimal\n${hexNum.join(
@@ -23,31 +23,31 @@ export function hexaToBinary(hexaNum: string) {
   );
 
   hexNum.forEach((element) => {
-    toDecimal.push(hexaFormater().toDecimal(element));
+    toDecimalFormat.push(hexaFormater().toDecimal(element));
   });
 
-  resultHtB.explanation[1] += `${toDecimal.join(" ")}`;
+  resultHtB.explanation[1] += `${toDecimalFormat.join(" ")}`;
 
   resultHtB.explanation.push(
     "Ubah setiap bilangan desimal menjadi biner 4 bit dengan cara : "
   );
 
-  toDecimal.forEach((element) => {
+  toDecimalFormat.forEach((element) => {
     let temp = new Decimal(element).toBinary();
     let explanation: string[];
     let converted: string[] = temp.converted.split("");
 
-    binaryFormatter().addZero(4, converted)
+    binaryFormatter().addZero(4, converted);
     resultHtB.converted.push(converted.join(""));
     explanation = temp.explanation.split("\n");
     if (explanation.length > 1) {
-        explanation.shift()
-        explanation.pop()
-        explanation.push(`Didapat hasil: ${converted.join("")}`)
-        resultHtB.explanation.push(explanation.join("\n"));
+      explanation.shift();
+      explanation.pop();
+      explanation.push(`Didapat hasil: ${converted.join("")}`);
+      resultHtB.explanation.push(explanation.join("\n"));
     } else {
-        explanation.unshift("")
-        resultHtB.explanation.push(explanation.join("\n"));
+      explanation.unshift("");
+      resultHtB.explanation.push(explanation.join("\n"));
     }
   });
 
@@ -60,3 +60,6 @@ export function hexaToBinary(hexaNum: string) {
 
   return resultHtB;
 }
+
+let coba = hexaToBinary("3C5");
+console.log(coba.explanation.join("\n"));

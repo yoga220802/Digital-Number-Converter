@@ -9,7 +9,7 @@ export function binaryToDecimal(binary: string) {
     let binaryDigits: number[] = binary.split("").map(Number)
     // console.log(binaryDigits);
     // console.log(binaryDigits.length);
-    let counter = 0
+    let counter:number = 0
     let desimalTotal: number = 0
     for (let i = binaryDigits.length - 1; i >= 0; i--) {
         let temp: number = binaryDigits[i] * (Math.pow(2, counter))
