@@ -40,9 +40,11 @@ export class Binary {
   }
 }
 
-// let coba = new Binary("1000101").toOctal()
-// console.log(coba.converted);
-// console.log(coba.explanation);
+// let coba = new Binary("1000101")
+// let binary = coba.toDecimal()
+// let ocatal = coba.toOctal()
+// console.log(binary.converted);
+// console.log(ocatal.explanation);
 // let coba2 = new Binary("1000101").toDecimal();
 // console.log(coba2.converted);
 // console.log(coba2.explanation);
