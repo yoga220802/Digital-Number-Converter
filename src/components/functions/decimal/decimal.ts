@@ -1,4 +1,4 @@
-import { Result } from "../../utils/customDataTypes"
+import { ConverterResult, Result } from "../../utils/customDataTypes"
 import { decimalToBinary } from "./toBinary"
 import { decimalToHexa } from "./toHexa"
 import { decimalToOctal } from "./toOctal"
@@ -15,7 +15,7 @@ export class Decimal {
     }
 
     toBinary() {
-        let _toBinary = decimalToBinary(this.num)
+        let _toBinary: ConverterResult = decimalToBinary(this.num)
         this.result.converted = _toBinary.converted.map((item, index) => {
             if (index > 0 && index % 4 === 0) {
                 return ` ${item}`
@@ -28,7 +28,7 @@ export class Decimal {
     }
 
     toOctal() {
-        let _toOctal = decimalToOctal(this.num)
+        let _toOctal: ConverterResult = decimalToOctal(this.num)
         this.result.converted = _toOctal.converted.join("")
         this.result.explanation = _toOctal.explanation.join("\n")
         return this.result

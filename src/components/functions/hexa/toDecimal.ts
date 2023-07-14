@@ -27,9 +27,10 @@ export const hexaToDecimal = (hexaNum: string) => {
 
     hexDigits = toDecimalFormat.map(Number)
 
+    resultHtD.explanation.push("Kalikan setiap digit dengan 16 pangkat i\ndengan i adalah posisi digit dari kanan ke kiri dimulai dari 0.")
     for (let i = hexDigits.length - 1; i >= 0; i--) {
         let temp: number = hexDigits[i] * (Math.pow(16, counter))
-        resultHtD.explanation.push(`(${hexDigits[i]} x 2^${counter} = ${temp})`)
+        resultHtD.explanation.push(`(${hexDigits[i]} x 16^${counter} = ${temp})`)
         resultHtD.converted.push(temp.toString())
         desimalTotal += temp
         counter++
