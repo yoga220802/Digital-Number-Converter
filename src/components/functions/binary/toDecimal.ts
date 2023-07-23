@@ -1,12 +1,12 @@
 import { ConverterResult } from "../../utils/customDataTypes"
 
-export function binaryToDecimal(binary: string) {
+export function binaryToDecimal(binaryNum: string) {
     let resultBtD: ConverterResult = {
         converted: [],
         explanation: []
     }
 
-    let binaryDigits: number[] = binary.split("").map(Number)
+    let binaryDigits: number[] = binaryNum.split("").map(Number)
     // console.log(binaryDigits);
     // console.log(binaryDigits.length);
     let counter:number = 0
