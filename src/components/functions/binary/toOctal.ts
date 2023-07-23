@@ -2,12 +2,12 @@ import { binaryFormatter } from "../../utils/binaryFormat";
 import { ConverterResult } from "../../utils/customDataTypes";
 import { binaryToDecimal } from "./toDecimal";
 
-export function binaryToOctal(binary: string) {
+export function binaryToOctal(binaryNum: string) {
   let resultBtO: ConverterResult = {
     converted: [],
     explanation: [],
   };
-  let binaryDigits: any = binary.split("");
+  let binaryDigits: any = binaryNum.split("");
 
   resultBtO.explanation.push(
     `Pertama-tama, cek apakah jumlah digit biner berjumlah kelipatan 3 atau tidak.\nJika tidak tambahkan 0 didepannya agar jumlahnya menjadi kelipatan 3.\n${binaryDigits.join(

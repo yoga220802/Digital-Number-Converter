@@ -3,12 +3,12 @@ import { ConverterResult } from "../../utils/customDataTypes";
 import { hexaFormater } from "../../utils/hexaFormat";
 import { binaryToDecimal } from "./toDecimal";
 
-export function binaryToHexa(binary: string) {
+export function binaryToHexa(binaryNum: string) {
   let resultBtH: ConverterResult = {
     converted: [],
     explanation: [],
   };
-  let binaryDigits: any = binary.split("");
+  let binaryDigits: any = binaryNum.split("");
 
   resultBtH.explanation.push(
     `Pertama-tama, cek apakah jumlah digit biner berjumlah kelipatan 4 atau tidak.\nJika tidak tambahkan 0 didepannya agar jumlahnya menjadi kelipatan 4.\n${binaryDigits.join(

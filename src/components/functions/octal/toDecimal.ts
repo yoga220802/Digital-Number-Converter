@@ -7,7 +7,6 @@ export const octalToDesimal = (octalNum: string) => {
   };
 
   let octalDigits: number[] = octalNum.split("").map(Number);
-  // console.log(octalDigits);
   let counter: number = 0;
   let desimalTotal: number = 0;
 

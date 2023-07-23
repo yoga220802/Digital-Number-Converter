@@ -4,10 +4,10 @@ import { hexaToDecimal } from "./toDecimal";
 import { hexaToOctal } from "./toOctal";
 
 export class Hexa {
-    private num: string
+    private _hexaNum: string
     private result: Result 
-    constructor(number: string) {
-        this.num = number
+    constructor(hexaNum: string) {
+        this._hexaNum = hexaNum
         this.result = {
             converted : "",
             explanation : ""
@@ -15,7 +15,7 @@ export class Hexa {
     }
 
     toBinary() {
-        let _toBinary: ConverterResult = hexaToBinary(this.num)
+        let _toBinary: ConverterResult = hexaToBinary(this._hexaNum)
         this.result.converted = _toBinary.converted.map((item, index) => {
             if (index > 0 && index % 4 === 0) {
                 return ` ${item}`
@@ -29,14 +29,14 @@ export class Hexa {
     }
 
     toDecimal() {
-        let _toDecimal: ConverterResult = hexaToBinary(this.num)
+        let _toDecimal: ConverterResult = hexaToBinary(this._hexaNum)
         this.result.converted = _toDecimal.converted.join("")
         this.result.explanation = _toDecimal.explanation.join("\n")
         return this.result
     }
 
     toOctal() {
-        let _toOctal:ConverterResult = hexaToOctal(this.num)
+        let _toOctal:ConverterResult = hexaToOctal(this._hexaNum)
         this.result.converted = _toOctal.converted.join("")
         this.result.explanation = _toOctal.explanation.join("\n")
         return this.result
