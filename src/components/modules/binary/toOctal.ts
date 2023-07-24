@@ -10,7 +10,7 @@ export function binaryToOctal(binaryNum: string) {
   let binaryDigits: any = binaryNum.split("");
 
   resultBtO.explanation.push(
-    `Pertama-tama, cek apakah jumlah digit biner berjumlah kelipatan 3 atau tidak.\nJika tidak tambahkan 0 didepannya agar jumlahnya menjadi kelipatan 3.\n${binaryDigits.join(
+    `cek apakah jumlah digit biner berjumlah kelipatan 3 atau tidak.\nJika tidak tambahkan 0 didepannya agar jumlahnya menjadi kelipatan 3.\n${binaryDigits.join(
       ""
     )}`
   );
@@ -46,6 +46,8 @@ export function binaryToOctal(binaryNum: string) {
   return resultBtO;
 }
 
-// let coba = binaryToOctal("10100110001");
+let coba = binaryToOctal("10100110001");
+console.log(coba);
+
 // console.log(coba.explanation.join("\n\n"));
 // console.log(coba.converted.join(""));
