@@ -11,19 +11,17 @@ export function binaryToHexa(binaryNum: string) {
   let binaryDigits: any = binaryNum.split("");
 
   resultBtH.explanation.push(
-    `Pertama-tama, cek apakah jumlah digit biner berjumlah kelipatan 4 atau tidak.\nJika tidak tambahkan 0 didepannya agar jumlahnya menjadi kelipatan 4.\n${binaryDigits.join(
+    `cek apakah jumlah digit biner berjumlah kelipatan 4 atau tidak.\nJika tidak tambahkan 0 didepannya agar jumlahnya menjadi kelipatan 4.\n${binaryDigits.join(
       ""
     )}`
   );
   binaryFormatter().addZero(4, binaryDigits);
-  // console.log(binaryDigits);
   resultBtH.explanation[0] += ` => ${binaryDigits.join("")}`;
 
   resultBtH.explanation.push(
     `Pecah bilangan biner menjadi kelompok dengan isi 4 bit biner\n`
   );
   binaryDigits = binaryFormatter().binarySplit(4, binaryDigits.join(""));
-  // console.log(binaryDigits);
   for (let i = 0; i < binaryDigits.length; i++) {
     resultBtH.explanation[1] += `(${binaryDigits[i].join("")}) `;
   }
@@ -36,6 +34,7 @@ export function binaryToHexa(binaryNum: string) {
     );
 
     let temp2: ConverterResult = binaryToDecimal(binaryDigits[i].join(""));
+    temp2.explanation.shift()
 
     resultBtH.explanation[i + 3] += `\n${temp2.explanation.join("\n")}\n`;
     resultBtH.explanation[i + 3] += `Didapat Hasil ${temp2.converted.join("")}`;
@@ -59,5 +58,7 @@ export function binaryToHexa(binaryNum: string) {
 }
 
 // let coba = binaryToHexa("1011100");
+// console.log(coba);
+
 // console.log(coba.explanation.join("\n\n"));
 // console.log(coba.converted.join(""));
