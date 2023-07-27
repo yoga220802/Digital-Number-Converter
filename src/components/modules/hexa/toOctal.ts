@@ -21,6 +21,8 @@ export const hexaToOctal = (hexNum: string) => {
 }
 
 // let coba = hexaToOctal("ABC")
+// console.log(coba);
+
 // console.log(`Converted : ${coba.converted}`);
 // console.log(`Explenation : 
 // ${coba.explanation.join("\n")}`);

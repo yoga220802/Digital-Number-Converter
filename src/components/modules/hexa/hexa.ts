@@ -1,21 +1,16 @@
 import { ConverterResult, Result } from "../../utils/customDataTypes";
+import { Converter } from "../converter/converter";
 import { hexaToBinary } from "./toBinary";
 import { hexaToDecimal } from "./toDecimal";
 import { hexaToOctal } from "./toOctal";
 
-export class Hexa {
-    private _hexaNum: string
-    private result: Result 
+export class Hexa extends Converter {
     constructor(hexaNum: string) {
-        this._hexaNum = hexaNum
-        this.result = {
-            converted : "",
-            explanation : ""
-        }
+        super(hexaNum)
     }
 
     toBinary() {
-        let _toBinary: ConverterResult = hexaToBinary(this._hexaNum)
+        let _toBinary: ConverterResult = hexaToBinary(this.num)
         this.result.converted = _toBinary.converted.map((item, index) => {
             if (index > 0 && index % 4 === 0) {
                 return ` ${item}`
@@ -29,14 +24,14 @@ export class Hexa {
     }
 
     toDecimal() {
-        let _toDecimal: ConverterResult = hexaToBinary(this._hexaNum)
+        let _toDecimal: ConverterResult = hexaToDecimal(this.num)
         this.result.converted = _toDecimal.converted.join("")
         this.result.explanation = _toDecimal.explanation.join("\n")
         return this.result
     }
 
     toOctal() {
-        let _toOctal:ConverterResult = hexaToOctal(this._hexaNum)
+        let _toOctal:ConverterResult = hexaToOctal(this.num)
         this.result.converted = _toOctal.converted.join("")
         this.result.explanation = _toOctal.explanation.join("\n")
         return this.result
