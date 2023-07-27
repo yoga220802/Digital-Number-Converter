@@ -24,14 +24,13 @@ export function decimalToBinary(decimalNum: string) {
     }
 
     resultDtB.explanation.push(`Didapat hasil: ${resultDtB.converted.join("")}`)
-    // while (resultDtB.converted.length % 4 !== 0) {
-    //   resultDtB.converted.unshift("0");
-    // }
   }
 
   return resultDtB;
 }
 
-// let cobs = decimalToBinary("4");
+// let cobs = decimalToBinary("10");
+// console.log(cobs);
+
 // console.log(cobs.converted.join(""));
 // console.log(cobs.explanation.join("\n"));
