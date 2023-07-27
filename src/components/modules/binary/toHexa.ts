@@ -37,7 +37,6 @@ export function binaryToHexa(binaryNum: string) {
     temp2.explanation.shift()
 
     resultBtH.explanation[i + 3] += `\n${temp2.explanation.join("\n")}\n`;
-    resultBtH.explanation[i + 3] += `Didapat Hasil ${temp2.converted.join("")}`;
 
     temp.push(temp2.converted.join(""));
   }
