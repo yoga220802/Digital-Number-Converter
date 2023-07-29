@@ -45,4 +45,3 @@ export const hexaToDecimal = (hexaNum: string) => {
 
 // let coba = hexaToDecimal("3A")
 // console.log(coba);
-

@@ -18,13 +18,16 @@ export const octalToBinary = (octalNum: string) => {
   for (let i = 0; i < octalDigits.length; i++) {
     let temp = new Decimal(octalDigits[i]).toBinary();
     let temp2 = temp.converted.split("")
+    let temp3: string[] = temp.explanation.split("\n")
+    temp3.shift()
     binaryFormatter().addZero(3, temp2)
     // console.log(temp);
-    resultOtB.explanation.push(`Digit ke${i + 1}: ${octalDigits[i]}\n${temp.explanation}`);
+    
+    resultOtB.explanation.push(`Digit ke-${i + 1}: ${octalDigits[i]}\n${temp3.join("\n")}`);
     resultOtB.converted.push(temp2.join(""))
   }
 
-  resultOtB.explanation.push(`Gabungkan hasil konversi tadi: ${resultOtB.converted.join("")}`)
+  resultOtB.explanation.push(`Gabungkan hasil konversi tadi: ${resultOtB.converted.join(" ")}`)
   return resultOtB;
 };
 

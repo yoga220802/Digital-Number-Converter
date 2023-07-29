@@ -61,5 +61,5 @@ export function hexaToBinary(hexaNum: string) {
   return resultHtB;
 }
 
-let coba = hexaToBinary("3C5");
-console.log(coba.explanation.join("\n"));
+// let coba = hexaToBinary("3C5");
+// console.log(coba.explanation.join("\n"));

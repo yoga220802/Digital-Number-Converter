@@ -1,22 +1,16 @@
-import { Result } from "../../utils/customDataTypes";
+import { Converter } from "../converter/converter";
 import { binaryToDecimal } from "./toDecimal";
 import { binaryToHexa } from "./toHexa";
 import { binaryToOctal } from "./toOctal";
 
-export class Binary {
-  private _binaryNum: string;
-  private result: Result;
+export class Binary extends Converter {
 
   constructor(binaryNum: string) {
-    this._binaryNum = binaryNum;
-    this.result = {
-      converted: "",
-      explanation: "",
-    };
+    super(binaryNum)
   }
 
   toOctal() {
-    let _toOctal = binaryToOctal(this._binaryNum);
+    let _toOctal = binaryToOctal(this.num);
     this.result.converted = _toOctal.converted.join("");
     this.result.explanation = _toOctal.explanation.join("\n\n");
 
@@ -24,7 +18,7 @@ export class Binary {
   }
 
   toDecimal() {
-    let _toDecimal = binaryToDecimal(this._binaryNum);
+    let _toDecimal = binaryToDecimal(this.num);
     this.result.converted = _toDecimal.converted.join("");
     this.result.explanation = _toDecimal.explanation.join("\n");
 
@@ -32,7 +26,7 @@ export class Binary {
   }
 
   toHexa() {
-    let _toHexa = binaryToHexa(this._binaryNum);
+    let _toHexa = binaryToHexa(this.num);
     this.result.converted = _toHexa.converted.join("");
     this.result.explanation = _toHexa.explanation.join("\n\n");
 
