@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     StyleSheet,
     View,
@@ -8,15 +8,51 @@ import {
     SafeAreaView,
     ScrollView,
     Image,
+    ImageSourcePropType
 } from "react-native";
-import { customFonts } from "../../fonts"
+import { customFonts } from "../../styles/fonts"
 
-import reverseIcon from "../../../assets/images/icons/reverseIcon.png"
+const styles = StyleSheet.create({
+    container: {
+        paddingTop: 100,
+        padding: 20,
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    button: {
+        marginTop: 10,
+        padding: 10,
+        alignSelf: "flex-start",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        borderRadius: 5,
+    },
+    buttonContainer: {
+        flexDirection: "row",
+    },
+    hasil: {
+        marginHorizontal: 15
+    },
+    textPenjelasan: {
+        fontFamily: "JetBrainsMono_300Light",
+        marginTop: 25,
+        color: "white"
+    },
+    input: {
+        backgroundColor: "#fff",
+        height: 50,
+        borderRadius: 10,
+        padding: 10,
+        marginTop: 25
+    }
+});
 
-const DecimalToBinary = () => {
-    const [desimal, setDesimal] = useState();
-    const [biner, setBiner] = useState("Hasil Konversi");
-    const [penjelasan, setPenjelasan] = useState()
+const reverseIcon: ImageSourcePropType = require("../../../assets/images/icons/reverseIcon.png");
+const DecimalToBinary: React.FC = () => {
+    const [desimal, setDesimal] = useState<number|undefined>();
+    const [biner, setBiner] = useState<string>("Hasil Konversi");
+    const [penjelasan, setPenjelasan] = useState<string>()
 
     const fontsLoaded = customFonts();
 
@@ -24,10 +60,10 @@ const DecimalToBinary = () => {
         return null;
     }
 
-    const handleInput = (text) => {
+    const handleInput = (text: string) => {
         if (text) {
             setDesimal(Number(text));
-        } else { setDesimal("") }
+        } else { setDesimal(undefined) }
     };
 
     const handleSubmit = () => {
@@ -109,42 +145,9 @@ const DecimalToBinary = () => {
             </View>
         </ScrollView>
     );
+
 };
 
-const styles = StyleSheet.create({
-    container: {
-        paddingTop: 100,
-        padding: 20,
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    button: {
-        marginTop: 10,
-        padding: 10,
-        alignSelf: "flex-start",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        borderRadius: 5,
-    },
-    buttonContainer: {
-        flexDirection: "row",
-    },
-    hasil: {
-        marginHorizontal: 15
-    },
-    textPenjelasan: {
-        fontFamily: "JetBrainsMono_300Light",
-         marginTop: 25,
-         color: "white"
-    },
-    input: {
-        backgroundColor: "#fff",
-        height: 50,
-        borderRadius: 10,
-        padding: 10,
-        marginTop: 25
-    }
-});
+
 
 export default DecimalToBinary;

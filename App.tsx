@@ -1,14 +1,16 @@
 import React , {Component} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import MainSreen from './src/screens/mainScreen';
-import DecimalToBinary from './src/screens/operasiDigital/digitalToBiner';
+// import MainSreen from './src/screens/mainScreen';
+import DecimalToBinary from './src/components/screens/digitalToBiner';
+import KeyboardTest from './test/keyboardTest';
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <MainSreen/> */}
-      <DecimalToBinary/>
+      {/* <DecimalToBinary/> */}
+      <KeyboardTest/>
       {/* <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" /> */}
     </View>

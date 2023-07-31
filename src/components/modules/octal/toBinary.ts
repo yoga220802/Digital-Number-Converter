@@ -1,5 +1,5 @@
-import { binaryFormatter } from "../../utils/binaryFormat";
-import { ConverterResult } from "../../utils/customDataTypes";
+import { binaryFormatter } from "../../../utils/binaryFormat";
+import { ConverterResult } from "../../../utils/customDataTypes";
 import { Decimal } from "../decimal/decimal";
 
 export const octalToBinary = (octalNum: string) => {

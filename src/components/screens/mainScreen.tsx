@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, ImageSourcePropType } from "react-native";
 import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
 
-import Logo from "../../assets/images/logo/digitalConverter.png"
-import { customFonts } from "../components/fonts";
+const Logo: ImageSourcePropType = require("../../assets/images/logo/digitalConverter.png")
+import { customFonts } from "../../styles/fonts";
 
 export default function MainSreen() {
     const fontsLoaded = customFonts();

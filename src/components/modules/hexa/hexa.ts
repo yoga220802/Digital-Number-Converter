@@ -1,4 +1,4 @@
-import { ConverterResult, Result } from "../../utils/customDataTypes";
+import { ConverterResult, Result } from "../../../utils/customDataTypes";
 import { Converter } from "../converter/converter";
 import { hexaToBinary } from "./toBinary";
 import { hexaToDecimal } from "./toDecimal";
