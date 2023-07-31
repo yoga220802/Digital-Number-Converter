@@ -1,4 +1,4 @@
-import { ConverterResult } from "../../utils/customDataTypes";
+import { ConverterResult } from "../../../utils/customDataTypes";
 
 export function decimalToOctal(decimalNum: string) {
   let resultDtO: ConverterResult = {

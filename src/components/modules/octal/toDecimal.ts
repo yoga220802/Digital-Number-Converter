@@ -1,4 +1,4 @@
-import { ConverterResult } from "../../utils/customDataTypes";
+import { ConverterResult } from "../../../utils/customDataTypes";
 
 export const octalToDesimal = (octalNum: string) => {
   let resultOtD: ConverterResult = {

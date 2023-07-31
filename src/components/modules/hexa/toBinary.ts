@@ -1,6 +1,6 @@
-import { ConverterResult } from "../../utils/customDataTypes";
-import { hexaFormater } from "../../utils/hexaFormat";
-import { binaryFormatter } from "../../utils/binaryFormat";
+import { ConverterResult } from "../../../utils/customDataTypes";
+import { hexaFormater } from "../../../utils/hexaFormat";
+import { binaryFormatter } from "../../../utils/binaryFormat";
 import { Decimal } from "../decimal/decimal";
 
 export function hexaToBinary(hexaNum: string) {

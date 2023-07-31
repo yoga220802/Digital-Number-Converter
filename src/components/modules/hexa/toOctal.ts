@@ -1,4 +1,4 @@
-import { ConverterResult, Result } from "../../utils/customDataTypes";
+import { ConverterResult, Result } from "../../../utils/customDataTypes";
 import { hexaToDecimal } from "./toDecimal";
 import { Decimal } from "../decimal/decimal";
 

@@ -1,4 +1,4 @@
-import { ConverterResult } from "../../utils/customDataTypes";
+import { ConverterResult } from "../../../utils/customDataTypes";
 import { Converter } from "../converter/converter";
 import { octalToBinary } from "./toBinary";
 import {octalToDesimal} from "./toDecimal"

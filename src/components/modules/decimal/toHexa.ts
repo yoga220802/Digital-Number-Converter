@@ -1,5 +1,5 @@
-import { hexaFormater } from "../../utils/hexaFormat";
-import { ConverterResult } from "../../utils/customDataTypes";
+import { hexaFormater } from "../../../utils/hexaFormat";
+import { ConverterResult } from "../../../utils/customDataTypes";
 
 export function decimalToHexa(decimalNum: string): ConverterResult {
   let resultDtH: ConverterResult = {

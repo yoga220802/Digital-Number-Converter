@@ -1,5 +1,5 @@
 import {Converter} from "../converter/converter"
-import { ConverterResult } from "../../utils/customDataTypes"
+import { ConverterResult } from "../../../utils/customDataTypes"
 import { decimalToBinary } from "./toBinary"
 import { decimalToHexa } from "./toHexa"
 import { decimalToOctal } from "./toOctal"

@@ -1,4 +1,4 @@
-import { Result } from "../../utils/customDataTypes";
+import { Result } from "../../../utils/customDataTypes";
 
 export class Converter {
     protected num: string

@@ -1,4 +1,4 @@
-import { ConverterResult } from "../../utils/customDataTypes"
+import { ConverterResult } from "../../../utils/customDataTypes"
 
 export function binaryToDecimal(binaryNum: string) {
     let resultBtD: ConverterResult = {
