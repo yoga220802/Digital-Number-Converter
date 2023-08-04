@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, Button } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import CustomKeyboard from '../src/utils/CustomKeyboard/binaryKeyboard';
+import BinaryKeyboard from '../src/utils/CustomKeyboard/binaryKeyboard';
+import OctalKeyboard from '../src/utils/CustomKeyboard/octalKeyboard';
 
 const KeyboardTest = () => {
   const [inputValue, setInputValue] = useState('');
+  const [mode, setMode] = useState('binary')
 
   const handleKeyPress = (value: string) => { // Specify the type as 'string'
     setInputValue(inputValue + value);
   };
+
+  const switchModeToBinary = () => {
+    setMode('binary')
+    setInputValue('')
+  }
+  const switchModeToOctal = () => {
+    setMode('octal')
+    setInputValue('')
+  }
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container} extraHeight={150}>
@@ -16,12 +27,22 @@ const KeyboardTest = () => {
         <TextInput
           style={styles.input}
           value={inputValue}
-          placeholder="Enter 1 or 0"
+          placeholder= {mode === 'binary' ? "Enter Binary" : "Enter Octal"}
           keyboardType="numeric"
           editable={false}
         />
       </View>
-      <CustomKeyboard onPress={handleKeyPress} />
+      {mode === 'binary' ? (
+        <>
+        <BinaryKeyboard onPress={handleKeyPress} />
+        <Button title='"Switch To Octal' onPress={switchModeToOctal}/>
+        </>
+      ) : (
+        <>
+        <OctalKeyboard onPress={handleKeyPress} />
+        <Button title='"Switch To Binary' onPress={switchModeToBinary}/>
+        </>
+      )}
     </KeyboardAwareScrollView>
   );
 };

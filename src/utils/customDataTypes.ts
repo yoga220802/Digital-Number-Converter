@@ -13,10 +13,8 @@ interface Result {
     explanation: string
 }
 
-// interface DecimalResult {
-//     toBinary: () => Result
-//     toOctal: () => Result
-//     toHexa: () => Result
-// }
+interface CustomKeyboardProps {
+    onPress: (value: string) => void;
+  }
 
-export {ConverterResult, HexaFormat, Result}
+export {ConverterResult, HexaFormat, Result, CustomKeyboardProps}

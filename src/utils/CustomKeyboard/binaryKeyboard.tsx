@@ -1,9 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 
-interface CustomKeyboardProps {
-    onPress: (value: string) => void;
-  }
+import { CustomKeyboardProps } from "../customDataTypes";
 
 const binaryKeyboard: React.FC<CustomKeyboardProps> = ({onPress}) => {
     const handleKeyPress = (value: string) => {
@@ -26,9 +24,13 @@ const styles = StyleSheet.create(
     {
         container: {
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "center",
             alignItems: "center",
             paddingVertical: 10,
+            backgroundColor: "#00b2ff",
+            width: 300,
+            margin: 10,
+            borderRadius: 10
         },
 
         button: {
@@ -36,6 +38,7 @@ const styles = StyleSheet.create(
             paddingHorizontal: 20,
             paddingVertical: 10,
             borderRadius: 5,
+            margin: 3
         },
         buttonText: {
             fontSize: 18
