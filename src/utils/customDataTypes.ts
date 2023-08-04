@@ -14,7 +14,8 @@ interface Result {
 }
 
 interface CustomKeyboardProps {
-    onPress: (value: string) => void;
-  }
+    value: string;
+    action: (value: string) => void;
+}
 
-export {ConverterResult, HexaFormat, Result, CustomKeyboardProps}
+export { ConverterResult, HexaFormat, Result, CustomKeyboardProps }
