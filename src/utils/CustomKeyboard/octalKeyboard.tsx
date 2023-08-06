@@ -22,9 +22,12 @@ const octalKeyboard: React.FC<CustomKeyboardProps> = ({ action }) => {
         <KeyboardButton value="4" action={handleKeyPress} />
         <KeyboardButton value="5" action={handleKeyPress} />
       </View>
-      <View style={keyboardStyles.centeredRow}>
+      <View style={keyboardStyles.row}>
         <KeyboardButton value="6" action={handleKeyPress} />
         <KeyboardButton value="7" action={handleKeyPress} />
+      </View>
+      <View style={keyboardStyles.row}>
+        <KeyboardButton value="delete" action={handleKeyPress} />
       </View>
     </View>
   );

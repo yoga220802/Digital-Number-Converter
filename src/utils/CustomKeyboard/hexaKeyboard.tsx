@@ -37,7 +37,7 @@ const HexaKeyboard: React.FC<CustomKeyboardProps> = ({action}) => {
                 <KeyboardButton value="F" action={handleKeyPress} />
             </View>
             <View style={keyboardStyles.row}>
-                <KeyboardButton value="DELETE" action={handleKeyPress} />
+                <KeyboardButton value="delete" action={handleKeyPress} />
             </View>
         </View>
     )

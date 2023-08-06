@@ -5,7 +5,7 @@ const keyboardStyles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       paddingVertical: 10,
-      width: 300,
+      width: 320,
       backgroundColor: "#00b2ff",
       margin: 10,
       borderRadius: 10,
@@ -14,23 +14,18 @@ const keyboardStyles = StyleSheet.create({
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 10,
-    },
-    centeredRow: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 10,
     },
     button: {
         backgroundColor: "#f0f0f0",
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingVertical: 10,
         borderRadius: 5,
-        marginHorizontal: 5,
+        margin: 2,
+        width: 70,
       },
       buttonText: {
         fontSize: 18,
+        textAlign: "center"
       },
   });
   

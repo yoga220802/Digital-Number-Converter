@@ -27,8 +27,9 @@ const DecimalKeyboard: React.FC<CustomKeyboardProps> = ({ action }) => {
         <KeyboardButton value="8" action={handleKeyPress} />
         <KeyboardButton value="9" action={handleKeyPress} />
       </View>
-      <View style={keyboardStyles.centeredRow} >
+      <View style={keyboardStyles.row}>
         <KeyboardButton value="0" action={handleKeyPress} />
+        <KeyboardButton value="delete" action={handleKeyPress} />
       </View>
     </View>
   );

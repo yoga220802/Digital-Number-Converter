@@ -11,9 +11,14 @@ const binaryKeyboard: React.FC<CustomKeyboardProps> = ({ action }) => {
   };
 
   return (
-    <View style={{...keyboardStyles.container, flexDirection: "row"}}>
+    <View style={keyboardStyles.container}>
+      <View style={keyboardStyles.row}>
       <KeyboardButton value="0" action={handleKeyPress} />
       <KeyboardButton value="1" action={handleKeyPress} />
+      </View>
+      <View style={keyboardStyles.row}>
+        <KeyboardButton value="delete" action={handleKeyPress} />
+      </View>
     </View>
   );
 };
