@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 
-import { CustomKeyboardProps } from "../customDataTypes";
+import { CustomKeyboardProps } from "../../utils/customDataTypes";
 import KeyboardButton from "./keyboardButton";
 import keyboardStyles from "../../styles/keyboardStyleSheets";
 

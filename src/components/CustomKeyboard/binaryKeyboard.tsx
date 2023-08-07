@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 
 import keyboardStyles from "../../styles/keyboardStyleSheets";
-import { CustomKeyboardProps } from "../customDataTypes";
+import { CustomKeyboardProps } from "../../utils/customDataTypes";
 import KeyboardButton from "./keyboardButton";
 
 const binaryKeyboard: React.FC<CustomKeyboardProps> = ({ action }) => {

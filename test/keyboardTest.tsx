@@ -1,4 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
+
 import {
   TextInput,
   View,
@@ -8,15 +15,19 @@ import {
   TouchableWithoutFeedback,
   Text,
   Animated,
-  Easing,
-  Keyboard,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import BinaryKeyboard from "../src/utils/CustomKeyboard/binaryKeyboard";
-import OctalKeyboard from "../src/utils/CustomKeyboard/octalKeyboard";
-import DecimalKeyboard from "../src/utils/CustomKeyboard/decimalKeyboard";
-import HexaKeyboard from "../src/utils/CustomKeyboard/hexaKeyboard";
+import BinaryKeyboard from "../src/components/CustomKeyboard/binaryKeyboard";
+import OctalKeyboard from "../src/components/CustomKeyboard/octalKeyboard";
+import DecimalKeyboard from "../src/components/CustomKeyboard/decimalKeyboard";
+import HexaKeyboard from "../src/components/CustomKeyboard/hexaKeyboard";
+
+import {
+  toggleKeyboardVisibility,
+  configureKeyboardListeners,
+  inputFocusHandler,
+} from "../src/utils/keyboardUtils";
 
 const KeyboardTest = () => {
   const [inputValue, setInputValue] = useState("");
@@ -58,60 +69,16 @@ const KeyboardTest = () => {
     setKeyboardVisible(false);
   };
 
-  const toggleKeyboardVisibility = () => {
-    if (keyboardVisible) {
-      Animated.timing(keyboradYValue, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-        easing: Easing.out(Easing.ease),
-      }).start(() => {
-        setKeyboardVisible(false);
-      });
-    } else {
-      setKeyboardVisible(true);
-      Animated.timing(keyboradYValue, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-        easing: Easing.inOut(Easing.ease),
-      }).start();
-    }
-  };
-
   useEffect(() => {
-    const keyboardShowListener = Keyboard.addListener("keyboardDidShow", () => {
-      Animated.timing(inputTextYValue, {
-        toValue: -1,
-        duration: 300,
-        useNativeDriver: true,
-        easing: Easing.inOut(Easing.cubic),
-      }).start();
-    });
-
-    const keyboardHideListener = Keyboard.addListener("keyboardDidHide", () => {
-      Animated.timing(inputTextYValue, {
-        toValue: 10,
-        duration: 300,
-        useNativeDriver: true,
-        easing: Easing.inOut(Easing.cubic),
-      }).start();
-    });
-
-    return () => {
-      keyboardHideListener.remove();
-      keyboardShowListener.remove();
-    };
+    const cleanUpListeners = configureKeyboardListeners(
+      inputTextYValue,
+      keyboradYValue
+    );
+    return cleanUpListeners;
   }, []);
 
   const handleInputFocus = () => {
-    setKeyboardVisible(true);
-    Animated.timing(keyboradYValue, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-      easing: Easing.inOut(Easing.ease),
-    }).start();
+    inputFocusHandler(setKeyboardVisible, keyboradYValue);
   };
 
   return (
@@ -153,7 +120,13 @@ const KeyboardTest = () => {
         </Animated.View>
       </TouchableWithoutFeedback>
       <TouchableOpacity
-        onPress={toggleKeyboardVisibility}
+        onPress={() =>
+          toggleKeyboardVisibility(
+            keyboardVisible,
+            setKeyboardVisible,
+            keyboradYValue
+          )
+        }
         style={{ ...styles.showHide, opacity: keyboardVisible ? 1 : 0.3 }}
       >
         <Text style={styles.buttonText}>
