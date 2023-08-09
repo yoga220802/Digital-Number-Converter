@@ -24,8 +24,8 @@ export const octalToHexa = (octalNum: string) => {
   return resultOtH;
 };
 
-let coba = octalToHexa("252")
-console.log(coba);
+// let coba = octalToHexa("252")
+// console.log(coba);
 // console.log(coba.converted.join(""));
 
 
