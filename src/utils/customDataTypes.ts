@@ -18,4 +18,9 @@ interface CustomKeyboardProps {
     action: (value: string) => void;
 }
 
-export { ConverterResult, HexaFormat, Result, CustomKeyboardProps }
+interface floatingKeyboardProps {
+    action: (value: string) => void;
+    isVisible: boolean
+}
+
+export { ConverterResult, HexaFormat, Result, CustomKeyboardProps, floatingKeyboardProps }

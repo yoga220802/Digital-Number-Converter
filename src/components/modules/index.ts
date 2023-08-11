@@ -21,5 +21,5 @@ export class DigitalConverter {
     }
 }
 
-const binaryToOctal  = DigitalConverter.Binary("1111").toDecimal()
-console.log(binaryToOctal);
+// const binaryToOctal  = DigitalConverter.Binary("1111").toDecimal()
+// console.log(binaryToOctal);

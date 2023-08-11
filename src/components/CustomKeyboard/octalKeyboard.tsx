@@ -1,17 +1,23 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Animated } from "react-native";
 
-import keyboardStyles from "../../styles/keyboardStyleSheets"
-import { CustomKeyboardProps } from "../../utils/customDataTypes";
+import keyboardStyles from "../../styles/keyboardStyleSheets";
+import { CustomKeyboardProps, floatingKeyboardProps } from "../../utils/customDataTypes";
 import KeyboardButton from "./keyboardButton";
 
-const octalKeyboard: React.FC<CustomKeyboardProps> = ({ action }) => {
+const OctalFloatingKeyboard: React.FC<floatingKeyboardProps> = ({
+  action,
+  isVisible,
+}) => {
   const handleKeyPress = (value: string) => {
     action(value);
   };
 
   return (
-    <View style={keyboardStyles.container}>
+    <Animated.View style={{
+        ...keyboardStyles.floatingContainer,
+        display: isVisible ? "flex" : "none",
+      }}>
       <View style={keyboardStyles.row}>
         <KeyboardButton value="0" action={handleKeyPress} />
         <KeyboardButton value="1" action={handleKeyPress} />
@@ -28,10 +34,10 @@ const octalKeyboard: React.FC<CustomKeyboardProps> = ({ action }) => {
       </View>
       <View style={keyboardStyles.row}>
         <KeyboardButton value="delete" action={handleKeyPress} />
+        <KeyboardButton value="submit" action={handleKeyPress} />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
-
-export default octalKeyboard;
+export default OctalFloatingKeyboard;

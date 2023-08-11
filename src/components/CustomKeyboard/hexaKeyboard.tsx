@@ -1,18 +1,24 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Animated } from "react-native";
 
-import { CustomKeyboardProps } from "../../utils/customDataTypes";
-import KeyboardButton from "./keyboardButton";
 import keyboardStyles from "../../styles/keyboardStyleSheets";
+import { CustomKeyboardProps, floatingKeyboardProps } from "../../utils/customDataTypes";
+import KeyboardButton from "./keyboardButton";
 
-const HexaKeyboard: React.FC<CustomKeyboardProps> = ({action}) => {
-    const handleKeyPress = (value: string) => {
-        action(value)
-    }
+const HexaFloatingKeyboard: React.FC<floatingKeyboardProps> = ({
+  action,
+  isVisible,
+}) => {
+  const handleKeyPress = (value: string) => {
+    action(value);
+  };
 
-    return (
-        <View style={keyboardStyles.container}>
-            <View style={keyboardStyles.row}>
+  return (
+    <Animated.View style={{
+        ...keyboardStyles.floatingContainer,
+        display: isVisible ? "flex" : "none",
+      }}>
+      <View style={keyboardStyles.row}>
                 <KeyboardButton value="0" action={handleKeyPress} />
                 <KeyboardButton value="1" action={handleKeyPress} />
                 <KeyboardButton value="2" action={handleKeyPress} />
@@ -38,9 +44,10 @@ const HexaKeyboard: React.FC<CustomKeyboardProps> = ({action}) => {
             </View>
             <View style={keyboardStyles.row}>
                 <KeyboardButton value="delete" action={handleKeyPress} />
+                <KeyboardButton value="submits" action={handleKeyPress} />
             </View>
-        </View>
-    )
-}
+    </Animated.View>
+  );
+};
 
-export default HexaKeyboard
+export default HexaFloatingKeyboard;

@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  Dispatch,
-  SetStateAction,
-} from "react";
-
+import React, { useState, useRef, useEffect } from "react";
 import {
   TextInput,
   View,
@@ -15,22 +8,30 @@ import {
   TouchableWithoutFeedback,
   Text,
   Animated,
+  SafeAreaView,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import BinaryKeyboard from "../src/components/CustomKeyboard/binaryKeyboard";
-import OctalKeyboard from "../src/components/CustomKeyboard/octalKeyboard";
-import DecimalKeyboard from "../src/components/CustomKeyboard/decimalKeyboard";
-import HexaKeyboard from "../src/components/CustomKeyboard/hexaKeyboard";
+// Import komponen floating keyboard
+import BinaryFloatingKeyboard from "../src/components/CustomKeyboard/binaryKeyboard";
+import OctalFloatingKeyboard from "../src/components/CustomKeyboard/octalKeyboard";
+import DecimalFloatingKeyboard from "../src/components/CustomKeyboard/decimalKeyboard";
+import HexaFloatingKeyboard from "../src/components/CustomKeyboard/hexaKeyboard";
 
+// Import fungsi utilitas keyboard
 import {
   toggleKeyboardVisibility,
   configureKeyboardListeners,
   inputFocusHandler,
 } from "../src/utils/keyboardUtils";
 
+// Import modul konversi digital
+import { DigitalConverter } from "../src/components/modules/index";
+
 const KeyboardTest = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [desimal, setDesimal] = useState("");
+  const [biner, setBiner] = useState("");
+  const [penjelasan, setPenjelasan] = useState("");
   const [mode, setMode] = useState("binary");
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -38,36 +39,54 @@ const KeyboardTest = () => {
   const inputTextYValue = useRef(new Animated.Value(0)).current;
 
   const handleKeyPress = (value: string) => {
-    if (value !== "delete") {
-      setInputValue(inputValue + value);
+    if (value === "delete") {
+      setDesimal(desimal.slice(0, -1));
+    } else if (value === "submit") {
+      handleSubmit();
     } else {
-      setInputValue(inputValue.slice(0, -1));
+      setDesimal(desimal + value);
     }
+  };
+
+  const handleSubmit = () => {
+    const decimalToBinary = DigitalConverter.Decimal(desimal).toBinary();
+    setBiner(decimalToBinary.converted);
+    setPenjelasan(decimalToBinary.explanation);
+    // Tampilkan bagian hasil konversi dan penjelasan
+    setConversionVisible(true);
+    setKeyboardVisible(false);
   };
 
   const switchModeToBinary = () => {
     setMode("binary");
-    setInputValue("");
+    setDesimal("");
     setKeyboardVisible(false);
   };
 
   const switchModeToOctal = () => {
     setMode("octal");
-    setInputValue("");
+    setDesimal("");
     setKeyboardVisible(false);
   };
 
   const switchModeToDecimal = () => {
     setMode("decimal");
-    setInputValue("");
+    setDesimal("");
     setKeyboardVisible(false);
   };
 
   const switchModeToHexa = () => {
     setMode("hexa");
-    setInputValue("");
+    setDesimal("");
     setKeyboardVisible(false);
   };
+
+  const handleInputFocus = () => {
+    inputFocusHandler(setKeyboardVisible, keyboradYValue);
+  };
+
+  // State untuk mengendalikan visibilitas hasil konversi dan penjelasan
+  const [conversionVisible, setConversionVisible] = useState(false);
 
   useEffect(() => {
     const cleanUpListeners = configureKeyboardListeners(
@@ -76,10 +95,6 @@ const KeyboardTest = () => {
     );
     return cleanUpListeners;
   }, []);
-
-  const handleInputFocus = () => {
-    inputFocusHandler(setKeyboardVisible, keyboradYValue);
-  };
 
   return (
     <KeyboardAwareScrollView
@@ -103,7 +118,7 @@ const KeyboardTest = () => {
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
-              value={inputValue}
+              value={desimal}
               placeholder={
                 mode === "binary"
                   ? "Masukan Binary"
@@ -133,61 +148,62 @@ const KeyboardTest = () => {
           {keyboardVisible ? "Hide\nKeyboard" : "Show\nKeyboard"}
         </Text>
       </TouchableOpacity>
-      <Animated.View
-        style={{
-          transform: [
-            {
-              translateY: keyboradYValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [30, -30],
-              }),
-            },
-          ],
-        }}
-      >
-        {keyboardVisible && (
-          <Animated.View style={{ opacity: keyboradYValue }}>
-            {mode === "binary" ? (
-              <>
-                <BinaryKeyboard action={handleKeyPress} value="" />
-                <Button title="Switch To Octal" onPress={switchModeToOctal} />
-                <Button
-                  title="Switch To Decimal"
-                  onPress={switchModeToDecimal}
-                />
-                <Button title="Switch To Hexa" onPress={switchModeToHexa} />
-              </>
-            ) : mode === "octal" ? (
-              <>
-                <OctalKeyboard action={handleKeyPress} value="" />
-                <Button title="Switch To Binary" onPress={switchModeToBinary} />
-                <Button
-                  title="Switch To Decimal"
-                  onPress={switchModeToDecimal}
-                />
-                <Button title="Switch To Hexa" onPress={switchModeToHexa} />
-              </>
-            ) : mode === "decimal" ? (
-              <>
-                <DecimalKeyboard action={handleKeyPress} value="" />
-                <Button title="Switch To Binary" onPress={switchModeToBinary} />
-                <Button title="Switch To Octal" onPress={switchModeToOctal} />
-                <Button title="Switch To Hexa" onPress={switchModeToHexa} />
-              </>
-            ) : (
-              <>
-                <HexaKeyboard action={handleKeyPress} value="" />
-                <Button title="Switch To Binary" onPress={switchModeToBinary} />
-                <Button title="Switch To Octal" onPress={switchModeToOctal} />
-                <Button
-                  title="Switch To Decimal"
-                  onPress={switchModeToDecimal}
-                />
-              </>
-            )}
-          </Animated.View>
-        )}
-      </Animated.View>
+      {/* Tombol-tombol untuk berpindah mode keyboard */}
+      <View style={styles.modeButtons}>
+        <Button title="Binary" onPress={switchModeToBinary} />
+        <Button title="Octal" onPress={switchModeToOctal} />
+        <Button title="Decimal" onPress={switchModeToDecimal} />
+        <Button title="Hexa" onPress={switchModeToHexa} />
+      </View>
+      {/* Bagian hasil konversi */}
+      {conversionVisible && (
+        <Animated.View
+          style={{
+            ...styles.inputContainer,
+            opacity: 1,
+          }}
+        >
+          <SafeAreaView>
+            <Text>{biner === "" ? "Hasil Konversi" : biner}</Text>
+          </SafeAreaView>
+        </Animated.View>
+      )}
+      {/* Bagian penjelasan */}
+      {conversionVisible && (
+        <Animated.View
+          style={{
+            ...styles.inputContainer,
+            opacity: 1,
+          }}
+        >
+          <SafeAreaView>
+            <Text>{penjelasan === "" ? "Penjelasan" : penjelasan}</Text>
+          </SafeAreaView>
+        </Animated.View>
+      )}
+      {/* Floating Binary Keyboard */}
+      <BinaryFloatingKeyboard
+        isVisible={keyboardVisible && mode === "binary"}
+        action={handleKeyPress}
+      />
+      {/* Floating Octal Keyboard */}
+      <OctalFloatingKeyboard
+        isVisible={keyboardVisible && mode === "octal"}
+        action={handleKeyPress}
+      />
+      {/* Floating Decimal Keyboard */}
+      <DecimalFloatingKeyboard
+        isVisible={keyboardVisible && mode === "decimal"}
+        action={handleKeyPress}
+      />
+      {/* Floating Hexa Keyboard */}
+      <HexaFloatingKeyboard
+        isVisible={keyboardVisible && mode === "hexa"}
+        action={handleKeyPress}
+      />
+      
+      
+      
     </KeyboardAwareScrollView>
   );
 };
@@ -203,16 +219,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,
-    marginBottom: 20,
     backgroundColor: "white",
   },
   input: {
     fontSize: 18,
   },
-
   showHide: {
     position: "absolute",
-    bottom: 10, // Sesuaikan posisi vertikal tombol
+    bottom: 10,
     backgroundColor: "#a2cee0",
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -222,10 +236,15 @@ const styles = StyleSheet.create({
     borderTopColor: "red",
     borderBottomColor: "red",
   },
-
   buttonText: {
     textAlign: "center",
     color: "#000000",
+  },
+  modeButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: 20,
   },
 });
 
