@@ -156,7 +156,7 @@ const KeyboardTest = () => {
         <Button title="Hexa" onPress={switchModeToHexa} />
       </View>
       {/* Bagian hasil konversi */}
-      {conversionVisible && (
+      
         <Animated.View
           style={{
             ...styles.inputContainer,
@@ -167,10 +167,10 @@ const KeyboardTest = () => {
             <Text>{biner === "" ? "Hasil Konversi" : biner}</Text>
           </SafeAreaView>
         </Animated.View>
-      )}
+      
       {/* Bagian penjelasan */}
-      {conversionVisible && (
-        <Animated.View
+      
+        <View
           style={{
             ...styles.inputContainer,
             opacity: 1,
@@ -179,8 +179,8 @@ const KeyboardTest = () => {
           <SafeAreaView>
             <Text>{penjelasan === "" ? "Penjelasan" : penjelasan}</Text>
           </SafeAreaView>
-        </Animated.View>
-      )}
+        </View>
+      
       {/* Floating Binary Keyboard */}
       <BinaryFloatingKeyboard
         isVisible={keyboardVisible && mode === "binary"}
