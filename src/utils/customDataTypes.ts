@@ -23,4 +23,8 @@ interface floatingKeyboardProps {
     isVisible: boolean
 }
 
-export { ConverterResult, HexaFormat, Result, CustomKeyboardProps, floatingKeyboardProps }
+interface converterScreen {
+    mode: string
+}
+
+export { ConverterResult, HexaFormat, Result, CustomKeyboardProps, floatingKeyboardProps , converterScreen}

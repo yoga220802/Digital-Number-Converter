@@ -4,9 +4,7 @@ import {
   View,
   TouchableOpacity,
   Text,
-  TextInput,
   SafeAreaView,
-  ScrollView,
   Image,
   ImageSourcePropType,
   Animated,
@@ -23,27 +21,53 @@ import {
 } from "../src/utils/keyboardUtils";
 import BinaryFloatingKeyboard from "../src/components/CustomKeyboard/binaryKeyboard";
 import DecimalFloatingKeyboard from "../src/components/CustomKeyboard/decimalKeyboard";
+import { Result, converterScreen } from "../src/utils/customDataTypes";
 
 const reverseIcon: ImageSourcePropType = require("../assets/images/icons/reverseIcon.png");
 
-const TestPage: React.FC = () => {
+const TestPage: React.FC<converterScreen> = ({ mode }) => {
   const [inputText, setInputText] = useState("");
   const [konversi, setKonversi] = useState("");
   const [penjelasan, setPenjelasan] = useState("");
   const [keyboardVisible, setKeyboardVisible] = useState(false);
+  const [currentMode, setCurrentMode] = useState(mode);
 
   const keyboardYValue = useRef(new Animated.Value(0)).current;
   const inputTextYValue = useRef(new Animated.Value(0)).current;
 
   const fontsLoaded = customFonts();
 
-  const handleSubmit = () => {
-    const decimalToBinary = DigitalConverter.Decimal(inputText).toBinary();
-    setKonversi(decimalToBinary.converted);
-    setPenjelasan(decimalToBinary.explanation);
+  const handleReverse = () => {
+    if (currentMode === "Decimal To Biner") {
+      setCurrentMode("Biner To Decimal");
+    } else if (currentMode === "Biner To Decimal") {
+      setCurrentMode("Decimal To Biner");
+    }
+    handleClear()
+    setInputText(konversi);
+  };
 
+  const handleSubmit = () => {
+    let conversion: Result = {
+      converted: "",
+      explanation: "",
+    };
+    if (currentMode === "Decimal To Biner") {
+      conversion = DigitalConverter.Decimal(inputText).toBinary();
+    } else if (currentMode === "Biner To Decimal") {
+      conversion = DigitalConverter.Binary(inputText).toDecimal();
+    }
+
+    setKonversi(conversion.converted);
+    setPenjelasan(conversion.explanation);
     setKeyboardVisible(false);
   };
+
+  const handleClear = () => {
+    setInputText("")
+    setKonversi("")
+    setPenjelasan("")
+  }
 
   const handleKeyPress = (value: string) => {
     if (value === "delete") {
@@ -79,49 +103,76 @@ const TestPage: React.FC = () => {
         extraHeight={150}
       >
         <View style={styles.contentLayer}>
-          <Text style={styles.textPenjelasan}>Desimal Ke Biner</Text>
-          <TouchableOpacity
-            style={{ ...styles.button, backgroundColor: "#00C2FF" }}
-          >
-            <Image source={reverseIcon} style={{ height: 15, width: 19.22 }} />
-          </TouchableOpacity>
+          <Text style={styles.textPenjelasan}>{currentMode}</Text>
+          <View>
+            <TouchableOpacity
+              style={{ ...styles.button, backgroundColor: "#00C2FF" }}
+              onPress={() => {
+                handleReverse();
+              }}
+            >
+              <Image
+                source={reverseIcon}
+                style={{ height: 15, width: 19.22 }}
+              />
+            </TouchableOpacity>
+          </View>
           <TouchableWithoutFeedback onPress={handleInputFocus}>
-            <TextInput
-              style={styles.input}
-              value={inputText}
-              placeholder="Masukan Bilangan Desimal"
-              keyboardType="numeric"
-              editable={false}
-            />
+            <View style={styles.input}>
+              <Text>
+                {inputText === "" ? "Masukan Bilangan Desimal" : inputText}
+              </Text>
+            </View>
           </TouchableWithoutFeedback>
-          <SafeAreaView style={{ ...styles.input, width: 200 }}>
+          <SafeAreaView style={styles.input}>
             <Text>{konversi}</Text>
           </SafeAreaView>
-          <SafeAreaView style={{ ...styles.input, width: 200, height: "auto", marginBottom: 100 }}>
+          <SafeAreaView
+            style={{
+              ...styles.input,
+              height: "auto",
+            }}
+          >
             <Text>{penjelasan}</Text>
           </SafeAreaView>
         </View>
       </KeyboardAwareScrollView>
 
       <View style={styles.overlayLayer}>
-        <TouchableOpacity
-          onPress={() => {
-            toggleKeyboardVisibility(
-              keyboardVisible,
-              setKeyboardVisible,
-              keyboardYValue
-            );
+        <View
+          style={{
+            ...styles.showHideButton,
+            opacity: keyboardVisible ? 1 : 0.3,
           }}
         >
-          <Text style={styles.buttonText}>
-            {keyboardVisible ? "Hide\nKeyboard" : "Show\nKeyboard"}{" "}
-          </Text>
-        </TouchableOpacity>
-
-        <DecimalFloatingKeyboard
-          isVisible={keyboardVisible}
-          action={handleKeyPress}
-        />
+          <TouchableOpacity
+            onPress={() => {
+              toggleKeyboardVisibility(
+                keyboardVisible,
+                setKeyboardVisible,
+                keyboardYValue
+              );
+            }}
+          >
+            <Text style={styles.buttonText}>
+              {keyboardVisible ? "Hide\nKeyboard" : "Show\nKeyboard"}{" "}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ alignItems: "center" }}>
+          {currentMode === "Decimal To Biner" && (
+            <DecimalFloatingKeyboard
+              isVisible={keyboardVisible}
+              action={handleKeyPress}
+            />
+          )}
+          {currentMode === "Biner To Decimal" && (
+            <BinaryFloatingKeyboard
+              isVisible={keyboardVisible}
+              action={handleKeyPress}
+            />
+          )}
+        </View>
       </View>
     </View>
   );
@@ -138,13 +189,16 @@ const styles = StyleSheet.create({
   contentLayer: {
     flex: 1,
     paddingTop: 50,
-    paddingHorizontal: 50,
+    paddingHorizontal: 100,
+    marginBottom: 50,
     alignItems: "center",
+    alignContent: "center",
   },
   overlayLayer: {
     position: "absolute",
     bottom: 0,
     width: "100%",
+    alignItems: "center",
   },
   textPenjelasan: {
     fontFamily: "JetBrainsMono_800ExtraBold",
@@ -162,14 +216,29 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: "#fff",
     height: 50,
-    maxWidth: 200,
+    width: 250,
     borderRadius: 10,
     padding: 10,
     marginTop: 25,
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
     textAlign: "center",
     color: "#000000",
+  },
+  showHideButton: {
+    // position: "absolute",
+    bottom: 10, // Sesuaikan posisi vertikal tombol
+    backgroundColor: "#a2cee0",
+    // paddingVertical: 5,
+    // paddingHorizontal: 10,
+    width: 100,
+    borderRadius: 50,
+    borderWidth: 3,
+    borderColor: "white",
+    borderTopColor: "red",
+    borderBottomColor: "red",
   },
 });
 

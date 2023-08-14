@@ -12,7 +12,7 @@ export default function App() {
       {/* <MainSreen/> */}
       {/* <DecimalToBinary/> */}
       {/* <KeyboardTest/> */}
-      <TestPage/>
+      <TestPage mode={"Decimal To Biner"} />
       {/* <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" /> */}
     </View>
