@@ -10,7 +10,7 @@ const keyboardStyles = StyleSheet.create({
   },
   floatingContainer: {
     width: 320,
-    backgroundColor: "#00b2ff",
+    backgroundColor: "#0487c4",
     position: "absolute",
     bottom: 70,
     // left: 20,
@@ -37,8 +37,9 @@ const keyboardStyles = StyleSheet.create({
     width: 75,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 17,
     textAlign: "center",
+    fontFamily: "JetBrainsMono_500Medium"
   },
 });
 

@@ -43,7 +43,7 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
     } else if (currentMode === "Biner To Decimal") {
       setCurrentMode("Decimal To Biner");
     }
-    handleClear()
+    handleReset();
     setInputText(konversi);
   };
 
@@ -63,11 +63,11 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
     setKeyboardVisible(false);
   };
 
-  const handleClear = () => {
-    setInputText("")
-    setKonversi("")
-    setPenjelasan("")
-  }
+  const handleReset = () => {
+    setInputText("");
+    setKonversi("");
+    setPenjelasan("");
+  };
 
   const handleKeyPress = (value: string) => {
     if (value === "delete") {
@@ -103,7 +103,11 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
         extraHeight={150}
       >
         <View style={styles.contentLayer}>
-          <Text style={styles.textPenjelasan}>{currentMode}</Text>
+          <View style={{...styles.input, backgroundColor: undefined}}>
+            <Text style={{ ...styles.textStyle, fontSize: 23}}>
+              {currentMode}
+            </Text>
+          </View>
           <View>
             <TouchableOpacity
               style={{ ...styles.button, backgroundColor: "#00C2FF" }}
@@ -119,21 +123,70 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
           </View>
           <TouchableWithoutFeedback onPress={handleInputFocus}>
             <View style={styles.input}>
-              <Text>
+              <Text
+                style={{
+                  ...styles.textStyle,
+                  fontSize: 10,
+                  marginBottom: 10,
+                  color: "#b6b2b2",
+                }}
+              >
+                Masukan Bilangan Digital
+              </Text>
+              <Text style={{ ...styles.textStyle, color: "#000" }}>
                 {inputText === "" ? "Masukan Bilangan Desimal" : inputText}
               </Text>
             </View>
           </TouchableWithoutFeedback>
-          <SafeAreaView style={styles.input}>
-            <Text>{konversi}</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={{ ...styles.button, backgroundColor: "#00C637" }}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.buttonText}>SUBMIT</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                ...styles.button,
+                backgroundColor: "#ff0000",
+                marginLeft: 25,
+              }}
+              onPress={handleReset}
+            >
+              <Text style={styles.buttonText}>RESET</Text>
+            </TouchableOpacity>
+          </View>
+          <SafeAreaView style={{ ...styles.input, backgroundColor: "#2f2f30" }}>
+            <Text
+              style={{
+                ...styles.textStyle,
+                fontSize: 10,
+                marginBottom: 10,
+                color: "#888686",
+              }}
+            >
+              Hasil Konversi
+            </Text>
+            <Text style={styles.textStyle}>{konversi}</Text>
           </SafeAreaView>
           <SafeAreaView
             style={{
               ...styles.input,
-              height: "auto",
+              backgroundColor: "#4e4c4c",
+              alignItems: "flex-start", // Menambahkan property alignItems
             }}
           >
-            <Text>{penjelasan}</Text>
+            <Text
+              style={{
+                ...styles.textStyle,
+                fontSize: 10,
+                marginBottom: 10,
+                color: "#888686",
+              }}
+            >
+              Penjelasan
+            </Text>
+            <Text style={styles.textStyle}>{penjelasan}</Text>
           </SafeAreaView>
         </View>
       </KeyboardAwareScrollView>
@@ -154,7 +207,7 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
               );
             }}
           >
-            <Text style={styles.buttonText}>
+            <Text style={{...styles.buttonText, color: keyboardVisible ? "#000" : "#fff"}}>
               {keyboardVisible ? "Hide\nKeyboard" : "Show\nKeyboard"}{" "}
             </Text>
           </TouchableOpacity>
@@ -188,9 +241,9 @@ const styles = StyleSheet.create({
   },
   contentLayer: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 75,
     paddingHorizontal: 100,
-    marginBottom: 50,
+    marginBottom: 70,
     alignItems: "center",
     alignContent: "center",
   },
@@ -200,9 +253,8 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
   },
-  textPenjelasan: {
+  textStyle: {
     fontFamily: "JetBrainsMono_800ExtraBold",
-    marginTop: 25,
     color: "white",
   },
   button: {
@@ -215,7 +267,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#fff",
-    height: 50,
+    height: "auto",
     width: 250,
     borderRadius: 10,
     padding: 10,
@@ -225,20 +277,28 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: "center",
-    color: "#000000",
+    color: "#ffffff",
+    fontFamily: "JetBrainsMono_300Light"
   },
   showHideButton: {
     // position: "absolute",
     bottom: 10, // Sesuaikan posisi vertikal tombol
     backgroundColor: "#a2cee0",
-    // paddingVertical: 5,
-    // paddingHorizontal: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
     width: 100,
     borderRadius: 50,
     borderWidth: 3,
     borderColor: "white",
     borderTopColor: "red",
     borderBottomColor: "red",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+  banner: {
+    justifyContent: "flex-start",
   },
 });
 
