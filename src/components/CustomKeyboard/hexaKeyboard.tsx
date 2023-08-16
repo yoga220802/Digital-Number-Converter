@@ -44,7 +44,7 @@ const HexaFloatingKeyboard: React.FC<floatingKeyboardProps> = ({
             </View>
             <View style={keyboardStyles.row}>
                 <KeyboardButton value="delete" action={handleKeyPress} />
-                <KeyboardButton value="submits" action={handleKeyPress} />
+                <KeyboardButton value="submit" action={handleKeyPress} />
             </View>
     </Animated.View>
   );
