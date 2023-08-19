@@ -4,7 +4,6 @@ import {
   View,
   TouchableOpacity,
   Text,
-  SafeAreaView,
   Image,
   ImageSourcePropType,
   Animated,
@@ -35,23 +34,40 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
   const keyboardYValue = useRef(new Animated.Value(0)).current;
   const inputTextYValue = useRef(new Animated.Value(0)).current;
 
+  const opacityReverse = useRef(new Animated.Value(1)).current;
+  const opacityTextPenjelasan = useRef(new Animated.Value(1)).current;
+  const opacityKonversi = useRef(new Animated.Value(1)).current;
+  const opacityCurrentMode = useRef(new Animated.Value(1)).current;
+
   const fontsLoaded = customFonts();
 
   const handleReverse = () => {
-    if (currentMode === "Decimal To Biner") {
-      setCurrentMode("Biner To Decimal");
-    } else if (currentMode === "Biner To Decimal") {
-      setCurrentMode("Decimal To Biner");
-    }
-    handleReset();
-    setInputText(konversi);
+    const newMode =
+      currentMode === "Decimal To Biner" ? "Biner To Decimal" : "Decimal To Biner";
+
+    Animated.parallel([
+      Animated.timing(opacityReverse, { toValue: 0, duration: 500, useNativeDriver: false }),
+      Animated.timing(opacityTextPenjelasan, { toValue: 0, duration: 500, useNativeDriver: false }),
+      Animated.timing(opacityKonversi, { toValue: 0, duration: 500, useNativeDriver: false }),
+      Animated.timing(opacityCurrentMode, { toValue: 0, duration: 500, useNativeDriver: false }),
+    ]).start(() => {
+      handleReset();
+      setInputText(konversi);
+
+      Animated.parallel([
+        Animated.timing(opacityReverse, { toValue: 1, duration: 500, useNativeDriver: false }),
+        Animated.timing(opacityTextPenjelasan, { toValue: 1, duration: 500, useNativeDriver: false }),
+        Animated.timing(opacityKonversi, { toValue: 1, duration: 500, useNativeDriver: false }),
+        Animated.timing(opacityCurrentMode, { toValue: 1, duration: 500, useNativeDriver: false }),
+      ]).start();
+
+      setCurrentMode(newMode);
+    });
   };
 
   const handleSubmit = () => {
-    let conversion: Result = {
-      converted: "",
-      explanation: "",
-    };
+    let conversion: Result = { converted: "", explanation: "" };
+
     if (currentMode === "Decimal To Biner") {
       conversion = DigitalConverter.Decimal(inputText).toBinary();
     } else if (currentMode === "Biner To Decimal") {
@@ -103,22 +119,28 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
         extraHeight={150}
       >
         <View style={styles.contentLayer}>
-          <View style={{...styles.input, backgroundColor: undefined}}>
-            <Text style={{ ...styles.textStyle, fontSize: 23}}>
+          <View
+            style={{
+              ...styles.input,
+              backgroundColor: undefined,
+            }}
+          >
+            <Animated.Text
+              style={{
+                ...styles.textStyle,
+                fontSize: 23,
+                opacity: opacityCurrentMode,
+              }}
+            >
               {currentMode}
-            </Text>
+            </Animated.Text>
           </View>
           <View>
             <TouchableOpacity
               style={{ ...styles.button, backgroundColor: "#00C2FF" }}
-              onPress={() => {
-                handleReverse();
-              }}
+              onPress={handleReverse}
             >
-              <Image
-                source={reverseIcon}
-                style={{ height: 15, width: 19.22 }}
-              />
+              <Image source={reverseIcon} style={{ height: 15, width: 19.22 }} />
             </TouchableOpacity>
           </View>
           <TouchableWithoutFeedback onPress={handleInputFocus}>
@@ -156,7 +178,12 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
               <Text style={styles.buttonText}>RESET</Text>
             </TouchableOpacity>
           </View>
-          <SafeAreaView style={{ ...styles.input, backgroundColor: "#2f2f30" }}>
+          <View
+            style={{
+              ...styles.input,
+              backgroundColor: "#2f2f30",
+            }}
+          >
             <Text
               style={{
                 ...styles.textStyle,
@@ -167,13 +194,20 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
             >
               Hasil Konversi
             </Text>
-            <Text style={styles.textStyle}>{konversi}</Text>
-          </SafeAreaView>
-          <SafeAreaView
+            <Animated.Text
+              style={{
+                ...styles.textStyle,
+                opacity: opacityKonversi,
+              }}
+            >
+              {konversi}
+            </Animated.Text>
+          </View>
+          <View
             style={{
               ...styles.input,
               backgroundColor: "#4e4c4c",
-              alignItems: "flex-start", // Menambahkan property alignItems
+              alignItems: "flex-start",
             }}
           >
             <Text
@@ -186,8 +220,15 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
             >
               Penjelasan
             </Text>
-            <Text style={styles.textStyle}>{penjelasan}</Text>
-          </SafeAreaView>
+            <Animated.Text
+              style={{
+                ...styles.textStyle,
+                opacity: opacityTextPenjelasan,
+              }}
+            >
+              {penjelasan}
+            </Animated.Text>
+          </View>
         </View>
       </KeyboardAwareScrollView>
 
@@ -207,7 +248,12 @@ const TestPage: React.FC<converterScreen> = ({ mode }) => {
               );
             }}
           >
-            <Text style={{...styles.buttonText, color: keyboardVisible ? "#000" : "#fff"}}>
+            <Text
+              style={{
+                ...styles.buttonText,
+                color: keyboardVisible ? "#000" : "#fff",
+              }}
+            >
               {keyboardVisible ? "Hide\nKeyboard" : "Show\nKeyboard"}{" "}
             </Text>
           </TouchableOpacity>
@@ -278,11 +324,10 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: "center",
     color: "#ffffff",
-    fontFamily: "JetBrainsMono_300Light"
+    fontFamily: "JetBrainsMono_300Light",
   },
   showHideButton: {
-    // position: "absolute",
-    bottom: 10, // Sesuaikan posisi vertikal tombol
+    bottom: 10,
     backgroundColor: "#a2cee0",
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -296,9 +341,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     marginTop: 10,
-  },
-  banner: {
-    justifyContent: "flex-start",
   },
 });
 
