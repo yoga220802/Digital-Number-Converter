@@ -2,8 +2,8 @@ import React , {Component} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 // import MainSreen from './src/screens/mainScreen';
-import DecimalToBinary from './src/components/screens/binary/digitalToBiner';
-import KeyboardTest from './test/keyboardTest';
+// import DecimalToBinary from './src/components/screens/binary/digitalToBiner';
+// import KeyboardTest from './test/keyboardTest';
 import TestPage from './test/pageTest';
 
 export default function App() {
