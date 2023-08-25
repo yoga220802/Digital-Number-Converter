@@ -20,11 +20,18 @@ import {
 } from "../src/utils/keyboardUtils";
 import BinaryFloatingKeyboard from "../src/components/CustomKeyboard/binaryKeyboard";
 import DecimalFloatingKeyboard from "../src/components/CustomKeyboard/decimalKeyboard";
-import { Result, converterScreen } from "../src/utils/customDataTypes";
+import { Result, ConverterScreen } from "../src/utils/customDataTypes";
+import OctalFloatingKeyboard from "../src/components/CustomKeyboard/octalKeyboard";
+import HexaFloatingKeyboard from "../src/components/CustomKeyboard/hexaKeyboard";
 
 const reverseIcon: ImageSourcePropType = require("../assets/images/icons/reverseIcon.png");
 
-const DecimalAndBinary: React.FC<converterScreen> = ({ mode }) => {
+const BaseConverter: React.FC<ConverterScreen> = ({
+  mode,
+  inputPlaceholder,
+  submitHandler,
+  reverseHandler,
+}) => {
   const [inputText, setInputText] = useState("");
   const [konversi, setKonversi] = useState("");
   const [penjelasan, setPenjelasan] = useState("");
@@ -42,8 +49,7 @@ const DecimalAndBinary: React.FC<converterScreen> = ({ mode }) => {
   const fontsLoaded = customFonts();
 
   const handleReverse = () => {
-    const newMode =
-      currentMode === "Decimal To Biner" ? "Biner To Decimal" : "Decimal To Biner";
+    const newMode = reverseHandler();
 
     Animated.parallel([
       Animated.timing(opacityReverse, { toValue: 0, duration: 500, useNativeDriver: false }),
@@ -66,13 +72,7 @@ const DecimalAndBinary: React.FC<converterScreen> = ({ mode }) => {
   };
 
   const handleSubmit = () => {
-    let conversion: Result = { converted: "", explanation: "" };
-
-    if (currentMode === "Decimal To Biner") {
-      conversion = DigitalConverter.Decimal(inputText).toBinary();
-    } else if (currentMode === "Biner To Decimal") {
-      conversion = DigitalConverter.Binary(inputText).toDecimal();
-    }
+    const conversion = submitHandler(inputText);
 
     setKonversi(conversion.converted);
     setPenjelasan(conversion.explanation);
@@ -259,18 +259,31 @@ const DecimalAndBinary: React.FC<converterScreen> = ({ mode }) => {
           </TouchableOpacity>
         </View>
         <View style={{ alignItems: "center" }}>
-          {currentMode === "Decimal To Biner" && (
-            <DecimalFloatingKeyboard
-              isVisible={keyboardVisible}
-              action={handleKeyPress}
-            />
-          )}
-          {currentMode === "Biner To Decimal" && (
+        {currentMode.split(" ")[0] === "Biner"  && (
             <BinaryFloatingKeyboard
               isVisible={keyboardVisible}
               action={handleKeyPress}
             />
           )}
+          {currentMode.split(" ")[0] === "Octal"  && (
+            <OctalFloatingKeyboard
+              isVisible={keyboardVisible}
+              action={handleKeyPress}
+            />
+          )}
+          {currentMode.split(" ")[0] === "Decimal"  && (
+            <DecimalFloatingKeyboard
+              isVisible={keyboardVisible}
+              action={handleKeyPress}
+            />
+          )}
+          {currentMode.split(" ")[0] === "Hexadecimal"  && (
+            <HexaFloatingKeyboard
+              isVisible={keyboardVisible}
+              action={handleKeyPress}
+            />
+          )}
+          
         </View>
       </View>
     </View>
@@ -292,12 +305,6 @@ const styles = StyleSheet.create({
     marginBottom: 70,
     alignItems: "center",
     alignContent: "center",
-  },
-  overlayLayer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    alignItems: "center",
   },
   textStyle: {
     fontFamily: "JetBrainsMono_800ExtraBold",
@@ -342,7 +349,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 10,
   },
+  overlayLayer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    alignItems: "center",
+  },
 });
 
-export default DecimalAndBinary;
-
+export default BaseConverter;

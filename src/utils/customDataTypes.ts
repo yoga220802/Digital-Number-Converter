@@ -23,8 +23,11 @@ interface floatingKeyboardProps {
     isVisible: boolean
 }
 
-interface converterScreen {
-    mode: string
-}
-
-export { ConverterResult, HexaFormat, Result, CustomKeyboardProps, floatingKeyboardProps , converterScreen}
+interface ConverterScreen {
+    mode: string; // Tambahkan mode sebagai string
+    inputPlaceholder: string; // Tambahkan inputPlaceholder sebagai string
+    submitHandler: (inputText: string) => Result; // Tambahkan submitHandler
+    reverseHandler: () => string; // Tambahkan reverseHandler
+  }
+  
+export { ConverterResult, HexaFormat, Result, CustomKeyboardProps, floatingKeyboardProps , ConverterScreen}

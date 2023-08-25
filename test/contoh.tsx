@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import BaseConverter from "./baseConverter";
-import OctalFloatingKeyboard from "../src/components/CustomKeyboard/octalKeyboard";
+import DecimalFloatingKeyboard from "../src/components/CustomKeyboard/decimalKeyboard";
 import { Result } from "../src/utils/customDataTypes";
 import { DigitalConverter } from "../src/components/modules";
 
 interface modeSwitch {
-  mode: string
-}
-const OctalAndBinary: React.FC<modeSwitch> = ({mode}) => {
+    mode: string
+  }
+const DecimalAndBinary: React.FC<modeSwitch> = ({mode}) => {
   const [currentMode, setCurrentMode] = useState(mode);
 
   const submitHandler = (inputText: string) => {
     let conversion: Result = { converted: "", explanation: "" };
 
-    if (currentMode === "Octal To Biner") {
-      conversion = DigitalConverter.Octal(inputText).toBinary();
-    } else if (currentMode === "Biner To Octal") {
-      conversion = DigitalConverter.Binary(inputText).toOctal();
+    if (currentMode === "Decimal To Biner") {
+      conversion = DigitalConverter.Decimal(inputText).toBinary();
+    } else if (currentMode === "Biner To Decimal") {
+      conversion = DigitalConverter.Binary(inputText).toDecimal();
     }
 
     return conversion;
@@ -24,7 +24,7 @@ const OctalAndBinary: React.FC<modeSwitch> = ({mode}) => {
 
   const reverseHandler = () => {
     const newMode =
-      currentMode === "Octal To Biner" ? "Biner To Octal" : "Octal To Biner";
+      currentMode === "Decimal To Biner" ? "Biner To Decimal" : "Decimal To Biner";
 
     setCurrentMode(newMode);
 
@@ -34,11 +34,11 @@ const OctalAndBinary: React.FC<modeSwitch> = ({mode}) => {
   return (
     <BaseConverter
       mode={currentMode}
-      inputPlaceholder="Masukan Bilangan Octal"
+      inputPlaceholder="Masukan Bilangan Decimal"
       submitHandler={submitHandler}
       reverseHandler={reverseHandler}
     />
   );
 };
 
-export default OctalAndBinary;
+export default DecimalAndBinary;

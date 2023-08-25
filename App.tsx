@@ -5,6 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 // import DecimalToBinary from './src/components/screens/binary/digitalToBiner';
 // import KeyboardTest from './test/keyboardTest';
 import TestPage from './test/pageTest';
+import DecimalAndBinary from './test/contoh';
+import OctalAndBinary from './test/pageTest';
 
 export default function App() {
   return (
@@ -12,7 +14,8 @@ export default function App() {
       {/* <MainSreen/> */}
       {/* <DecimalToBinary/> */}
       {/* <KeyboardTest/> */}
-      <TestPage mode={"Decimal To Biner"} />
+      <DecimalAndBinary mode={"Decimal To Biner"} />
+      {/* <OctalAndBinary mode={"Octal To Biner"} /> */}
       {/* <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" /> */}
     </View>
