@@ -58,7 +58,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
       Animated.timing(opacityCurrentMode, { toValue: 0, duration: 500, useNativeDriver: false }),
     ]).start(() => {
       handleReset();
-      setInputText(konversi);
+      setInputText(konversi.split(" ").join(""));
 
       Animated.parallel([
         Animated.timing(opacityReverse, { toValue: 1, duration: 500, useNativeDriver: false }),
