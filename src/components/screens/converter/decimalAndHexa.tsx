@@ -3,7 +3,7 @@ import BaseConverter from "../../../utils/baseConverter";
 import { Result, modeSwitch } from "../../../utils/customDataTypes";
 import { DigitalConverter } from "../../modules";
 
-export const OctalAndBinary: React.FC<modeSwitch> = ({ mode }) => {
+export const DecimalAndHexa: React.FC<modeSwitch> = ({ mode }) => {
   const [currentMode, setCurrentMode] = useState(mode);
 
   const submitHandler = (inputText: string) => {
@@ -12,10 +12,10 @@ export const OctalAndBinary: React.FC<modeSwitch> = ({ mode }) => {
       explanation: "",
     };
 
-    if (currentMode === "Octal To Biner") {
-      conversion = DigitalConverter.Octal(inputText).toBinary();
-    } else if (currentMode === "Biner To Octal") {
-      conversion = DigitalConverter.Binary(inputText).toOctal();
+    if (currentMode === "Decimal To Hexa") {
+      conversion = DigitalConverter.Decimal(inputText).toHexa();
+    } else if (currentMode === "Hexa To Decimal") {
+      conversion = DigitalConverter.Hexa(inputText).toDecimal();
     }
 
     return conversion;
@@ -23,7 +23,7 @@ export const OctalAndBinary: React.FC<modeSwitch> = ({ mode }) => {
 
   const reverseHandler = () => {
     const newMode =
-      currentMode === "Octal To Biner" ? "Biner To Octal" : "Octal To Biner";
+      currentMode === "Decimal To Hexa" ? "Hexa To Decimal" : "Decimal To Hexa";
 
     setCurrentMode(newMode);
 
@@ -31,10 +31,6 @@ export const OctalAndBinary: React.FC<modeSwitch> = ({ mode }) => {
   };
 
   return (
-    <BaseConverter
-      mode={currentMode}
-      submitHandler={submitHandler}
-      reverseHandler={reverseHandler}
-    />
-  );
+    <BaseConverter mode={currentMode} submitHandler={submitHandler} reverseHandler={reverseHandler} />
+  )
 };
