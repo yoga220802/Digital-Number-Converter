@@ -1,34 +1,19 @@
-import React , {Component} from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-// import MainSreen from './src/screens/mainScreen';
-// import DecimalToBinary from './src/components/screens/binary/digitalToBiner';
-// import KeyboardTest from './test/keyboardTest';
-import TestPage from './src/components/screens/converter/octalAndBinary';
-import DecimalAndBinary from './src/components/screens/converter/decimalAndBinary';
-import OctalAndBinary from './src/components/screens/converter/octalAndBinary';
-import HexaAndBinary from './src/components/screens/converter/hexaAndBinary';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import MainScreen from "./src/components/screens/routes/mainScreen";
+import StackNavigation from "./src/routers";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <MainSreen/> */}
-      {/* <DecimalToBinary/> */}
-      {/* <KeyboardTest/> */}
-      <HexaAndBinary mode={"Hexa To Biner"} />
-      {/* <DecimalAndBinary mode={"Decimal To Biner"} /> */}
-      {/* <OctalAndBinary mode={"Octal To Biner"} /> */}
-      {/* <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" /> */}
-    </View>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="Main" component={MainScreen} />
+    //     {/* Add more screens as needed */}
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <StackNavigation/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#1E1E1E',
-    alignItems: 'center',
-    justifyContent: "flex-start",
-  },
-});

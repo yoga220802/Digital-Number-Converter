@@ -24,7 +24,7 @@ import { Result, ConverterScreen } from "./customDataTypes";
 import OctalFloatingKeyboard from "../components/CustomKeyboard/octalKeyboard";
 import HexaFloatingKeyboard from "../components/CustomKeyboard/hexaKeyboard";
 
-const reverseIcon: ImageSourcePropType = require("../assets/images/icons/reverseIcon.png");
+const reverseIcon: ImageSourcePropType = require("../../assets/images/icons/reverseIcon.png");
 
 const BaseConverter: React.FC<ConverterScreen> = ({
   mode,
