@@ -43,7 +43,7 @@ export default function BinaryConverterRoutes({
             title={button.title}
             info={button.info}
             inMainScreen={false}
-            onPressAction={() => navigation.goBack()}
+            onPressAction={() => navigation.navigate("DaB")}
           />
         ))}
       </View>

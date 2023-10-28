@@ -1,13 +1,15 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
-import { NavigationContainer, NavigationProp } from "@react-navigation/native";
-import { StackNavigationProp, createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import MainScreen from "../components/screens/routes/mainScreen";
 import BinaryConverterRoutes from "../components/screens/routes/binaryConverterRoutes";
 import { RootStackParamList } from "../utils/routerUtils";
 import OctalConverterRoutes from "../components/screens/routes/octalConverterRoutes";
 import DecimalConverterRoutes from "../components/screens/routes/decimalConverterRoutes";
 import HexaConverterRoutes from "../components/screens/routes/hexaConverterRoutes";
+import { DecimalAndBinary } from "../components/screens/converter/decimalAndBinary";
+import { HexaAndBinary } from "../components/screens/converter/hexaAndBinary";
+import { OctalAndBinary } from "../components/screens/converter/octalAndBinary";
 
 // function HomeScreen({ navigation }: { navigation: HomeScreenNavigationProp }) {
 //   return (
@@ -69,13 +71,17 @@ function StackNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={MainScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="BinaryConverter" component={BinaryConverterRoutes} options={{headerShown:false}}/>
-        <Stack.Screen name="OctalConverter" component={OctalConverterRoutes} options={{headerShown:false}}/>
-        <Stack.Screen name="DecimalConverter" component={DecimalConverterRoutes} options={{headerShown:false}}/>
-        <Stack.Screen name="HexaConverter" component={HexaConverterRoutes} options={{headerShown:false}}/>
-        {/* <Stack.Screen name="Credits" component={ProfilesScreen} /> */}
-      </Stack.Navigator>
+  <Stack.Screen name="Home" component={MainScreen} options={{ headerShown: false }} />
+  <Stack.Screen name="BinaryConverter" component={BinaryConverterRoutes} options={{ headerShown: false }} />
+  <Stack.Screen name="OctalConverter" component={OctalConverterRoutes} options={{ headerShown: false }} />
+  <Stack.Screen name="DecimalConverter" component={DecimalConverterRoutes} options={{ headerShown: false }} />
+  <Stack.Screen name="HexaConverter" component={HexaConverterRoutes} options={{ headerShown: false }} />
+  <Stack.Screen name="DaB" options={{headerShown: false}}>
+    {(props) => <DecimalAndBinary {...props} mode="Biner To Decimal" />}
+    
+  </Stack.Screen>
+</Stack.Navigator>
+
     </NavigationContainer>
   );
 }

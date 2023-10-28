@@ -292,7 +292,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "background color",
+    backgroundColor: "#1E1E1E",
   },
   contentContainer: {
     flexGrow: 1,

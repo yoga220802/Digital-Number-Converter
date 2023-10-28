@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import BaseConverter from "../../../utils/baseConverter";
 import { Result, modeSwitch } from "../../../utils/customDataTypes";
 import { DigitalConverter } from "../../modules";
+import * as routerUtils from "../../../utils/routerUtils"
 
-export const DecimalAndBinary: React.FC<modeSwitch> = ({mode}) => {
+export const DecimalAndBinary: React.FC<modeSwitch> = ({mode, navigation}: {mode: string, navigation: routerUtils.DaBScreensNavigationProp}) => {
   const [currentMode, setCurrentMode] = useState(mode);
 
   const submitHandler = (inputText: string) => {

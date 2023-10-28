@@ -31,6 +31,7 @@ interface ConverterScreen {
 
 interface modeSwitch {
   mode: string;
+  navigation: any
 }
 export {
   ConverterResult,
