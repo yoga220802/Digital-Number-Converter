@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "digital_number_converter",
+    "name": "Digital Number Converter",
     "slug": "digital_number_converter",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/AppIcon.png",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/SplashScreen.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#303030"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

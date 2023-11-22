@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { responsiveFontSize, responsiveWidth } from "react-native-responsive-dimensions";
 
 const keyboardStyles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ const keyboardStyles = StyleSheet.create({
     borderRadius: 10,
   },
   floatingContainer: {
-    width: 320,
+    width: responsiveWidth(95),
     backgroundColor: "#0487c4",
     position: "absolute",
     bottom: 70,
@@ -34,10 +35,10 @@ const keyboardStyles = StyleSheet.create({
     paddingVertical: 7,
     borderRadius: 5,
     margin: 2,
-    width: 75,
+    width: responsiveWidth(20),
   },
   buttonText: {
-    fontSize: 17,
+    fontSize: responsiveFontSize(2),
     textAlign: "center",
     fontFamily: "JetBrainsMono_500Medium"
   },

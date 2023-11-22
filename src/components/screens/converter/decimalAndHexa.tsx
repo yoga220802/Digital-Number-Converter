@@ -4,7 +4,7 @@ import { Result, modeSwitch } from "../../../utils/customDataTypes";
 import { DigitalConverter } from "../../modules";
 import * as routerUtils from "../../../utils/routerUtils"
 
-export const DecimalAndHexa: React.FC<modeSwitch> = ({mode, navigation}: {mode: string, navigation: routerUtils.DaHScreensNavigationProp}) => {
+export const DecimalAndHexa: React.FC<modeSwitch> = ({mode, navigation}: {mode: string, navigation: routerUtils.DtHScreensNavigationProp}) => {
   const [currentMode, setCurrentMode] = useState(mode);
 
   const submitHandler = (inputText: string) => {

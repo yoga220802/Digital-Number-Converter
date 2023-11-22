@@ -9,12 +9,21 @@ type RootStackParamList = {
   DecimalConverter: undefined;
   HexaConverter: undefined;
 
-  DaB: undefined;
-  DaH: undefined;
-  DaO: undefined;
-  HaB: undefined;
-  OaB: undefined;
-  oah: undefined;
+  BtO: undefined;
+  BtD: undefined;
+  BtH: undefined;
+  
+  OtB: undefined;
+  OtD: undefined;
+  OtH: undefined;
+
+  DtB: undefined;
+  DtO: undefined;
+  DtH: undefined;
+
+  HtB: undefined;
+  HtO: undefined;
+  HtD: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -24,12 +33,21 @@ type BinaryConverterScreensNavigationProp = StackNavigationProp<RootStackParamLi
 type OctalConverterScreensNavigationProp = StackNavigationProp<RootStackParamList, "OctalConverter">;
 type DecimalConverterScreensNavigationProp = StackNavigationProp<RootStackParamList, "DecimalConverter">;
 type HexaConverterScreensNavigationProp = StackNavigationProp<RootStackParamList, "HexaConverter">;
-type DaBScreensNavigationProp = StackNavigationProp<RootStackParamList, "DaB">;
-type DaHScreensNavigationProp = StackNavigationProp<RootStackParamList, "DaH">;
-type DaOScreensNavigationProp = StackNavigationProp<RootStackParamList, "DaO">;
-type HaBScreensNavigationProp = StackNavigationProp<RootStackParamList, "HaB">;
-type OaBScreensNavigationProp = StackNavigationProp<RootStackParamList, "OaB">;
-type oahScreensNavigationProp = StackNavigationProp<RootStackParamList, "oah">;
+type BtOScreensNavigationProp = StackNavigationProp<RootStackParamList, "BtO">;
+type BtDScreensNavigationProp = StackNavigationProp<RootStackParamList, "BtD">;
+type BtHScreensNavigationProp = StackNavigationProp<RootStackParamList, "BtH">;
+
+type OtBScreensNavigationProp = StackNavigationProp<RootStackParamList, "OtB">;
+type OtDScreensNavigationProp = StackNavigationProp<RootStackParamList, "OtD">;
+type OtHScreensNavigationProp = StackNavigationProp<RootStackParamList, "OtH">;
+
+type DtBScreensNavigationProp = StackNavigationProp<RootStackParamList, "DtB">;
+type DtOScreensNavigationProp = StackNavigationProp<RootStackParamList, "DtO">;
+type DtHScreensNavigationProp = StackNavigationProp<RootStackParamList, "DtH">;
+
+type HtBScreensNavigationProp = StackNavigationProp<RootStackParamList, "HtB">;
+type HtOScreensNavigationProp = StackNavigationProp<RootStackParamList, "HtO">;
+type HtDScreensNavigationProp = StackNavigationProp<RootStackParamList, "HtD">;
 
 export {
   RootStackParamList,
@@ -40,10 +58,20 @@ export {
   OctalConverterScreensNavigationProp,
   DecimalConverterScreensNavigationProp,
   HexaConverterScreensNavigationProp,
-  DaBScreensNavigationProp,
-  DaHScreensNavigationProp,
-  DaOScreensNavigationProp,
-  HaBScreensNavigationProp,
-  OaBScreensNavigationProp,
-  oahScreensNavigationProp,
+  
+  BtOScreensNavigationProp,
+  BtDScreensNavigationProp,
+  BtHScreensNavigationProp,
+  
+  OtBScreensNavigationProp,
+  OtDScreensNavigationProp,
+  OtHScreensNavigationProp,
+  
+  DtBScreensNavigationProp,
+  DtOScreensNavigationProp,
+  DtHScreensNavigationProp,
+  
+  HtBScreensNavigationProp,
+  HtOScreensNavigationProp,
+  HtDScreensNavigationProp,
 };

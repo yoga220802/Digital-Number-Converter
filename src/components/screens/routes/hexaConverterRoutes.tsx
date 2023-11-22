@@ -6,26 +6,29 @@ import * as RouterUtils from "../../../utils/routerUtils";
 import { customFonts } from "../../../styles/fonts";
 import CategoryButton from "../../../utils/categoryButton";
 
-const categoryButtons = [
-  {
-    title: "Heksadesimal\nKe",
-    info: "Biner",
-  },
-  {
-    title: "Heksadesimal\nKe",
-    info: "Oktal",
-  },
-  {
-    title: "Heksadesimal\nKe",
-    info: "Desimal",
-  },
-];
 
 export default function HexaConverterRoutes({
   navigation,
 }: {
   navigation: RouterUtils.HexaConverterScreensNavigationProp;
 }) {
+  const categoryButtons = [
+    {
+      title: "Heksadesimal\nKe",
+      info: "Biner",
+      navigation: () => navigation.navigate("HtB")
+    },
+    {
+      title: "Heksadesimal\nKe",
+      info: "Oktal",
+      navigation: () => navigation.navigate("HtO")
+    },
+    {
+      title: "Heksadesimal\nKe",
+      info: "Desimal",
+      navigation: () => navigation.navigate("HtD")
+    },
+  ];
   const fontsLoaded = customFonts();
 
   if (!fontsLoaded) {
@@ -43,40 +46,10 @@ export default function HexaConverterRoutes({
             title={button.title}
             info={button.info}
             inMainScreen={false}
-            onPressAction={() => navigation.goBack()}
+            onPressAction={button.navigation}
           />
         ))}
       </View>
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  logoContainer: {
-    alignItems: "center",
-  },
-  logo: {
-    height: 55.53,
-    width: 250,
-    marginBottom: 28,
-  },
-  categoryButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-    elevation: 10,
-    borderRadius: 5,
-    marginTop: 25,
-    backgroundColor: "#4d4d4d",
-  },
-  buttonTitle: {
-    textAlign: "center",
-    fontSize: 32,
-    fontFamily: "JetBrainsMono_400Regular",
-  },
-  buttonText: {
-    textAlign: "center",
-    fontSize: 32,
-    fontFamily: "JetBrainsMono_400Regular_Italic",
-  },
-});

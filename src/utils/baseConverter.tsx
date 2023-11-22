@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+import styles from "../styles/screenStyles"
 import { customFonts } from "../styles/fonts";
-import { DigitalConverter } from "../components/modules";
 import {
   configureKeyboardListeners,
   inputFocusHandler,
@@ -20,9 +20,10 @@ import {
 } from "./keyboardUtils";
 import BinaryFloatingKeyboard from "../components/CustomKeyboard/binaryKeyboard";
 import DecimalFloatingKeyboard from "../components/CustomKeyboard/decimalKeyboard";
-import { Result, ConverterScreen } from "./customDataTypes";
+import { ConverterScreen } from "./customDataTypes";
 import OctalFloatingKeyboard from "../components/CustomKeyboard/octalKeyboard";
 import HexaFloatingKeyboard from "../components/CustomKeyboard/hexaKeyboard";
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
 
 const reverseIcon: ImageSourcePropType = require("../../assets/images/icons/reverseIcon.png");
 
@@ -51,19 +52,51 @@ const BaseConverter: React.FC<ConverterScreen> = ({
     const newMode = reverseHandler();
 
     Animated.parallel([
-      Animated.timing(opacityReverse, { toValue: 0, duration: 500, useNativeDriver: false }),
-      Animated.timing(opacityTextPenjelasan, { toValue: 0, duration: 500, useNativeDriver: false }),
-      Animated.timing(opacityKonversi, { toValue: 0, duration: 500, useNativeDriver: false }),
-      Animated.timing(opacityCurrentMode, { toValue: 0, duration: 500, useNativeDriver: false }),
+      Animated.timing(opacityReverse, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: false,
+      }),
+      Animated.timing(opacityTextPenjelasan, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: false,
+      }),
+      Animated.timing(opacityKonversi, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: false,
+      }),
+      Animated.timing(opacityCurrentMode, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: false,
+      }),
     ]).start(() => {
       handleReset();
       setInputText(konversi.split(" ").join(""));
 
       Animated.parallel([
-        Animated.timing(opacityReverse, { toValue: 1, duration: 500, useNativeDriver: false }),
-        Animated.timing(opacityTextPenjelasan, { toValue: 1, duration: 500, useNativeDriver: false }),
-        Animated.timing(opacityKonversi, { toValue: 1, duration: 500, useNativeDriver: false }),
-        Animated.timing(opacityCurrentMode, { toValue: 1, duration: 500, useNativeDriver: false }),
+        Animated.timing(opacityReverse, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(opacityTextPenjelasan, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(opacityKonversi, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(opacityCurrentMode, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false,
+        }),
       ]).start();
 
       setCurrentMode(newMode);
@@ -115,7 +148,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
     <View style={styles.container}>
       <KeyboardAwareScrollView
         contentContainerStyle={styles.contentContainer}
-        extraHeight={150}
+        extraHeight={responsiveHeight(45)}
       >
         <View style={styles.contentLayer}>
           <View
@@ -127,7 +160,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
             <Animated.Text
               style={{
                 ...styles.textStyle,
-                fontSize: 23,
+                fontSize: responsiveFontSize(3),
                 opacity: opacityCurrentMode,
               }}
             >
@@ -139,7 +172,10 @@ const BaseConverter: React.FC<ConverterScreen> = ({
               style={{ ...styles.button, backgroundColor: "#00C2FF" }}
               onPress={handleReverse}
             >
-              <Image source={reverseIcon} style={{ height: 15, width: 19.22 }} />
+              <Image
+                source={reverseIcon}
+                style={{ height: responsiveHeight(3), width: responsiveWidth(5.7) }}
+              />
             </TouchableOpacity>
           </View>
           <TouchableWithoutFeedback onPress={handleInputFocus}>
@@ -147,7 +183,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
               <Text
                 style={{
                   ...styles.textStyle,
-                  fontSize: 10,
+                  fontSize: responsiveFontSize(1.4),
                   marginBottom: 10,
                   color: "#b6b2b2",
                 }}
@@ -164,7 +200,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
               style={{ ...styles.button, backgroundColor: "#00C637" }}
               onPress={handleSubmit}
             >
-              <Text style={styles.buttonText}>SUBMIT</Text>
+              <Text style={styles.convertButtonText}>SUBMIT</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -174,7 +210,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
               }}
               onPress={handleReset}
             >
-              <Text style={styles.buttonText}>RESET</Text>
+              <Text style={styles.convertButtonText}>RESET</Text>
             </TouchableOpacity>
           </View>
           <View
@@ -186,7 +222,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
             <Text
               style={{
                 ...styles.textStyle,
-                fontSize: 10,
+                fontSize: responsiveFontSize(1.4),
                 marginBottom: 10,
                 color: "#888686",
               }}
@@ -212,7 +248,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
             <Text
               style={{
                 ...styles.textStyle,
-                fontSize: 10,
+                fontSize: responsiveFontSize(1.4),
                 marginBottom: 10,
                 color: "#888686",
               }}
@@ -249,7 +285,7 @@ const BaseConverter: React.FC<ConverterScreen> = ({
           >
             <Text
               style={{
-                ...styles.buttonText,
+                ...styles.convertButtonText,
                 color: keyboardVisible ? "#000" : "#fff",
               }}
             >
@@ -258,102 +294,34 @@ const BaseConverter: React.FC<ConverterScreen> = ({
           </TouchableOpacity>
         </View>
         <View style={{ alignItems: "center" }}>
-        {currentMode.split(" ")[0] === "Biner"  && (
+          {currentMode.split(" ")[0] === "Biner" && (
             <BinaryFloatingKeyboard
               isVisible={keyboardVisible}
               action={handleKeyPress}
             />
           )}
-          {currentMode.split(" ")[0] === "Octal"  && (
+          {currentMode.split(" ")[0] === "Octal" && (
             <OctalFloatingKeyboard
               isVisible={keyboardVisible}
               action={handleKeyPress}
             />
           )}
-          {currentMode.split(" ")[0] === "Decimal"  && (
+          {currentMode.split(" ")[0] === "Decimal" && (
             <DecimalFloatingKeyboard
               isVisible={keyboardVisible}
               action={handleKeyPress}
             />
           )}
-          {currentMode.split(" ")[0] === "Hexadecimal"  && (
+          {currentMode.split(" ")[0] === "Hexa" && (
             <HexaFloatingKeyboard
               isVisible={keyboardVisible}
               action={handleKeyPress}
             />
           )}
-          
         </View>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#1E1E1E",
-  },
-  contentContainer: {
-    flexGrow: 1,
-  },
-  contentLayer: {
-    flex: 1,
-    paddingTop: 75,
-    paddingHorizontal: 100,
-    marginBottom: 70,
-    alignItems: "center",
-    alignContent: "center",
-  },
-  textStyle: {
-    fontFamily: "JetBrainsMono_800ExtraBold",
-    color: "white",
-  },
-  button: {
-    marginTop: 10,
-    padding: 10,
-    alignSelf: "flex-start",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    borderRadius: 5,
-  },
-  input: {
-    backgroundColor: "#fff",
-    height: "auto",
-    width: 250,
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 25,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    textAlign: "center",
-    color: "#ffffff",
-    fontFamily: "JetBrainsMono_300Light",
-  },
-  showHideButton: {
-    bottom: 10,
-    backgroundColor: "#a2cee0",
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    width: 100,
-    borderRadius: 50,
-    borderWidth: 3,
-    borderColor: "white",
-    borderTopColor: "red",
-    borderBottomColor: "red",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    marginTop: 10,
-  },
-  overlayLayer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    alignItems: "center",
-  },
-});
 
 export default BaseConverter;

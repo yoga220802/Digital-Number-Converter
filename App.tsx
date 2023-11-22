@@ -4,11 +4,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import MainScreen from "./src/components/screens/routes/mainScreen";
 import StackNavigation from "./src/routers";
+import CarouselTest from "./test/carousel";
 
 export default function App() {
   return (
     // <View style={styles.container}>
       <StackNavigation />
+      // <CarouselTest/>
     // </View>
   );
 }

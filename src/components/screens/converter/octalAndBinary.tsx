@@ -4,7 +4,7 @@ import { Result, modeSwitch } from "../../../utils/customDataTypes";
 import { DigitalConverter } from "../../modules";
 import * as routerUtils from "../../../utils/routerUtils"
 
-export const OctalAndBinary: React.FC<modeSwitch> = ({mode, navigation}: {mode: string, navigation: routerUtils.OaBScreensNavigationProp}) => {
+export const OctalAndBinary: React.FC<modeSwitch> = ({mode, navigation}: {mode: string, navigation: routerUtils.OtHScreensNavigationProp | routerUtils.HtOScreensNavigationProp}) => {
   const [currentMode, setCurrentMode] = useState(mode);
 
   const submitHandler = (inputText: string) => {

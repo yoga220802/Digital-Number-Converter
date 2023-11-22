@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import styles from "../styles/screenStyles";
 
 const CategoryButton = ({
   title,
@@ -16,25 +17,24 @@ const CategoryButton = ({
     style={{
       ...styles.categoryButton,
       backgroundColor: (title.includes("Biner") && inMainScreen) || info.includes("Biner")
-        ? "#61EB3D"
+        ? "#4cc9f0"
         : (title.includes("Oktal") && inMainScreen) || info.includes("Oktal")
-        ? "#EBA93D"
+        ? "#2ec4b6"
         : (title.includes("Desimal") && inMainScreen) || info.includes("Desimal")
-        ? "#3D95EB"
+        ? "#e71d36"
         : (title.includes("Heksa") && inMainScreen) || info.includes("Heksa")
-        ? "#EB3D3A"
-        : "#597896",
-        borderStyle: "dotted",
+        ? "#ff9f1c"
+        : "#4cc9f0",
+        borderStyle: "solid",
         borderWidth: 5,
-        borderRadius: 20,
-        borderColor: "#597896",
+        borderRadius: 5,
+        borderColor: "#fff",
     }}
     onPress={onPressAction}
   >
     <Text
       style={{
         ...styles.buttonTitle,
-        fontSize: 30,
       }}
     >
       {title}
@@ -48,34 +48,5 @@ const CategoryButton = ({
   </TouchableOpacity>
 );
 
-const styles = StyleSheet.create({
-  logoContainer: {
-    alignItems: "center",
-  },
-  logo: {
-    height: 55.53,
-    width: 250,
-    marginBottom: 28,
-  },
-  categoryButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-    elevation: 10,
-    borderRadius: 5,
-    marginTop: 25,
-    backgroundColor: "#4d4d4d",
-  },
-  buttonTitle: {
-    textAlign: "center",
-    fontSize: 32,
-    fontFamily: "JetBrainsMono_400Regular",
-  },
-  buttonText: {
-    textAlign: "center",
-    fontSize: 32,
-    fontFamily: "JetBrainsMono_400Regular_Italic",
-  },
-});
 
 export default CategoryButton;

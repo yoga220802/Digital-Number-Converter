@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Image, StyleSheet, ScrollView, ImageSourcePropType } from "react-native";
-import categoryButton from "../../../utils/categoryButton"
+import { View, Image, ScrollView, ImageSourcePropType } from "react-native";
 import * as routerUtils from "../../../utils/routerUtils";
+import styles from "../../../styles/screenStyles";
 
 const Logo: ImageSourcePropType = require("../../../../assets/images/logo/digitalConverter.png")
 import { customFonts } from "../../../styles/fonts";
@@ -56,34 +56,3 @@ export default function MainScreen({ navigation }: { navigation: routerUtils.Hom
     </ScrollView>
   );
 }
-  
-
-const styles = StyleSheet.create({
-  logoContainer: {
-    alignItems: "center",
-  },
-  logo: {
-    height: 55.53,
-    width: 250,
-    marginBottom: 28,
-  },
-  categoryButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-    elevation: 10,
-    borderRadius: 5,
-    marginTop: 25,
-    backgroundColor:"#4d4d4d"
-  },
-  buttonTitle: {
-    textAlign: "center",
-    fontSize: 32,
-    fontFamily: "JetBrainsMono_400Regular",
-  },
-  buttonText: {
-    textAlign: "center",
-    fontSize: 32,
-    fontFamily: "JetBrainsMono_400Regular_Italic",
-  },
-});
