@@ -2,7 +2,7 @@
   "expo": {
     "name": "Digital Number Converter",
     "slug": "digital_number_converter",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/AppIcon.png",
     "userInterfaceStyle": "dark",
@@ -22,12 +22,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/AppIcon.png",
+        "backgroundColor": "#303030"
+      },
+      "versionCode": 1,
+      "package": "com.yogaaa.digital_number_converter"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/AppIcon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "47117b49-170d-4668-b72d-ce6428b68903"
+      }
     }
   }
 }
